@@ -1,4 +1,4 @@
-Version = "1.0.5"
+Version = "1.0.6"
 
 print("Loading Future Internals V" .. Version .. "!")
 
@@ -32,7 +32,7 @@ local TweenService = game:GetService("TweenService")
 
 local UISettings = {
     TabWidth = 160,
-    Size = { 580, 460 },
+    Size = { 680, 560 },
     Theme = "Darker",
     Acrylic = false,
     Transparency = true,
@@ -1280,7 +1280,22 @@ do
         })
     end
 
-    Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "book" })
+    Tabs.Contact = Window:AddTab({ Title = "Contact Me!", Icon = "user"})
+
+    Tabs.Contact:AddParagraph({
+        Title = "Future Internals: Contact Me!",
+        Content = "WWW:\nhttps://www.Future-Internals.xyz/ContactMe"
+    })
+
+    Contact.copyButton = Tabs.Contact:AddButton({
+        Title = "Contact me on Discord!",
+        Description = "Click to copy the Discord invite to your clipboard!",
+        Callback = function()
+            setclipboard("https://discord.gg/MBMehqKKCv")
+        end
+    })
+
+    Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "openbook" })
 
     Tabs.Credits:AddParagraph({
         Title = "Future Internals: Credits",
