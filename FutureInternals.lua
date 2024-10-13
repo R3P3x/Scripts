@@ -1298,7 +1298,7 @@ do
         Content = "Website:\nhttps://www.Future-Internals.xyz/ContactMe"
     })
 
-    Contact.copyButton = Tabs.Contact:AddButton({
+    copyButton = Tabs.Contact:AddButton({
         Title = "Contact me on Discord!",
         Description = "Click to copy the Discord invite to your clipboard!",
         Callback = function()
