@@ -236,8 +236,6 @@ do
             return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
         end)
         if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
-
-            
             Fluent = getfenv().loadstring(Result)()
             if Fluent.Premium then
                 return getfenv().loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua", true))()
