@@ -167,9 +167,9 @@ Configuration.TargetPlayers = ImportedConfiguration["TargetPlayers"] or {}
 Configuration.FoV = ImportedConfiguration["FoV"] or false
 Configuration.FoVKey = ImportedConfiguration["FoVKey"] or "R"
 Configuration.FoVThickness = ImportedConfiguration["FoVThickness"] or 2
-Configuration.FoVOpacity = ImportedConfiguration["FoVOpacity"] or 0.8
+Configuration.FoVOpacity = ImportedConfiguration["FoVOpacity"] or 1
 Configuration.FoVFilled = ImportedConfiguration["FoVFilled"] or false
-Configuration.FoVColour = ImportedConfiguration["FoVColour"] or Color3.fromRGB(255, 255, 255)
+Configuration.FoVColour = ImportedConfiguration["FoVColour"] or Color3.fromRGB(255, 0, 0)
 
 Configuration.SmartESP = ImportedConfiguration["SmartESP"] or false
 Configuration.ESPKey = ImportedConfiguration["ESPKey"] or "T"
