@@ -2,6 +2,7 @@ Version = "1.1.4"
 
 warn("----------------------------------------------------|")
 warn("Loading Future Internals V" .. Version .. "!")
+warn("----------------------------------------------------|")
 
 --! Debugger
 
@@ -1986,6 +1987,7 @@ end)
 
 warn("Aimbot Handler loaded!")
 wait(1)
+warn("----------------------------------------------------|")
 warn("Loaded Future Internals V" .. Version .. "!")
 warn("----------------------------------------------------|")
 end
