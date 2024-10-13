@@ -5,7 +5,7 @@ warn("Loading Future Internals V" .. Version .. "!")
 
 --! Debugger
 
-local DEBUG = true
+local DEBUG = false
 
 if DEBUG then
     getfenv().getfenv = function()
