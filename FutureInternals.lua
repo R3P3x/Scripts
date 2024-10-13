@@ -1,4 +1,4 @@
-Version = "1.0.6"
+Version = "1.0.7"
 
 print("Loading Future Internals V" .. Version .. "!")
 
@@ -1284,7 +1284,7 @@ do
 
     Tabs.Contact:AddParagraph({
         Title = "Future Internals: Contact Me!",
-        Content = "WWW:\nhttps://www.Future-Internals.xyz/ContactMe"
+        Content = "Website:\nhttps://www.Future-Internals.xyz/ContactMe"
     })
 
     Contact.copyButton = Tabs.Contact:AddButton({
