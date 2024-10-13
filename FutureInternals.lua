@@ -1,4 +1,4 @@
-Version = "1.1.1"
+Version = "1.1.2"
 
 warn("----------------------------------------------------|")
 warn("Loading Future Internals V" .. Version .. "!")
@@ -898,15 +898,15 @@ do
 
         local ESPSection = Tabs.Visuals:AddSection("ESP")
 
-        local SmartESPToggle = ESPSection:AddToggle("SmartESP", { Title = "Smart ESP", Description = "Does not ESP the Whitelisted Players", Default = Configuration.SmartESP })
-        SmartESPToggle:OnChanged(function(Value)
-            Configuration.SmartESP = Value
-        end)
-
-        local ESPBoxToggle = ESPSection:AddToggle("ESPBox", { Title = "ESP Box", Description = "Creates the ESP Box around the Players", Default = Configuration.ESPBox })
+        local ESPBoxToggle = ESPSection:AddToggle("ESP", { Title = "ESP", Description = "Toggles ESP", Default = Configuration.ESPBox })
         ESPBoxToggle:OnChanged(function(Value)
             Configuration.ESPBox = Value
             ShowingESP = Value
+        end)
+
+        local SmartESPToggle = ESPSection:AddToggle("SmartESP", { Title = "Smart ESP", Description = "Does not ESP the Whitelisted Players", Default = Configuration.SmartESP })
+        SmartESPToggle:OnChanged(function(Value)
+            Configuration.SmartESP = Value
         end)
 
         local ESPBoxFilledToggle = ESPSection:AddToggle("ESPBoxFilled", { Title = "ESP Box Filled", Description = "Makes the ESP Box Filled", Default = Configuration.ESPBoxFilled })
