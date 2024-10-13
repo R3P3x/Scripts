@@ -708,7 +708,7 @@ do
         Callback = function()
             IgnoredPlayersDropdown:SetValue({})
             Window:Dialog({
-                Title = "Open Aimbot",
+                Title = "Future Internals",
                 Content = "All Items have been deselected!",
                 Buttons = {
                     {
@@ -732,7 +732,7 @@ do
             end
             IgnoredPlayersDropdown:BuildDropdownList()
             Window:Dialog({
-                Title = "Open Aimbot",
+                Title = "Future Internals",
                 Content = Items == 0 and "Nothing has been cleared!" or Items == 1 and "1 Item has been cleared!" or string.format("%s Items have been cleared!", Items),
                 Buttons = {
                     {
@@ -809,7 +809,7 @@ do
         Callback = function()
             TargetPlayersDropdown:SetValue({})
             Window:Dialog({
-                Title = "Open Aimbot",
+                Title = "Future Internals",
                 Content = "All Items have been deselected!",
                 Buttons = {
                     {
@@ -844,200 +844,197 @@ do
         end
     })
 
-    if getfenv().Drawing then
-        Tabs.Visuals = Window:AddTab({ Title = "Visuals", Icon = "box" })
+    Tabs.Visuals = Window:AddTab({ Title = "Visuals", Icon = "box" })
 
-        Tabs.Visuals:AddParagraph({
-            Title = "Future Internals: Visuals",
-            Content = "Documentation:\nhttps://www.Future-Internals.xyz/Visuals\nBugs/Glitches Documention:\nhttps://www.Future-Internals.xyz/Visuals/Bugs"
-        })
+    Tabs.Visuals:AddParagraph({
+        Title = "Future Internals: Visuals",
+        Content = "Documentation:\nhttps://www.Future-Internals.xyz/Visuals\nBugs/Glitches Documention:\nhttps://www.Future-Internals.xyz/Visuals/Bugs"
+    })
 
-        local FoVSection = Tabs.Visuals:AddSection("FoV")
+    local FoVSection = Tabs.Visuals:AddSection("FoV")
 
-        local FoVToggle = FoVSection:AddToggle("FoV", { Title = "FoV", Description = "Graphically Displays the FoV Radius", Default = Configuration.FoV })
-        FoVToggle:OnChanged(function(Value)
-            Configuration.FoV = Value
-        end)
+    local FoVToggle = FoVSection:AddToggle("FoV", { Title = "FoV", Description = "Graphically Displays the FoV Radius", Default = Configuration.FoV })
+    FoVToggle:OnChanged(function(Value)
+        Configuration.FoV = Value
+    end)
 
-        if IsComputer then
-            local FoVKeybind = FoVSection:AddKeybind("FoVKey", {
-                Title = "FoV Key",
-                Description = "Changes the FoV Key",
-                Default = Configuration.FoVKey,
-                ChangedCallback = function(Value)
-                    Configuration.FoVKey = Value
-                end
-            })
-            Configuration.FoVKey = pcall(UserInputService.GetStringForKeyCode, UserInputService, FoVKeybind.Value) and Enum.KeyCode[FoVKeybind.Value] or Enum.UserInputType.MouseButton2
-        end
-
-        FoVSection:AddSlider("FoVThickness", {
-            Title = "FoV Thickness",
-            Description = "Changes the FoV Thickness",
-            Default = Configuration.FoVThickness,
-            Min = 1,
-            Max = 10,
-            Rounding = 1,
-            Callback = function(Value)
-                Configuration.FoVThickness = Value
+    if IsComputer then
+        local FoVKeybind = FoVSection:AddKeybind("FoVKey", {
+            Title = "FoV Key",
+            Description = "Changes the FoV Key",
+            Default = Configuration.FoVKey,
+            ChangedCallback = function(Value)
+                Configuration.FoVKey = Value
             end
         })
-
-        FoVSection:AddSlider("FoVOpacity", {
-            Title = "FoV Opacity",
-            Description = "Changes the FoV Opacity",
-            Default = Configuration.FoVOpacity,
-            Min = 0.1,
-            Max = 1,
-            Rounding = 1,
-            Callback = function(Value)
-                Configuration.FoVOpacity = Value
-            end
-        })
-
-        local FoVFilledToggle = FoVSection:AddToggle("FoVFilled", { Title = "FoV Filled", Description = "Makes the FoV Filled", Default = Configuration.FoVFilled })
-        FoVFilledToggle:OnChanged(function(Value)
-            Configuration.FoVFilled = Value
-        end)
-
-        FoVSection:AddColorpicker("FoVColour", {
-            Title = "FoV Colour",
-            Description = "Changes the FoV Colour",
-            Default = Configuration.FoVColour,
-            Callback = function(Value)
-                Configuration.FoVColour = Value
-            end
-        })
-
-        local ESPSection = Tabs.Visuals:AddSection("ESP")
-
-        local SmartESPToggle = ESPSection:AddToggle("SmartESP", { Title = "Smart ESP", Description = "Does not ESP the Whitelisted Players", Default = Configuration.SmartESP })
-        SmartESPToggle:OnChanged(function(Value)
-            Configuration.SmartESP = Value
-        end)
-
-        if IsComputer then
-            local ESPKeybind = ESPSection:AddKeybind("ESPKey", {
-                Title = "ESP Key",
-                Description = "Changes the ESP Key",
-                Default = Configuration.ESPKey,
-                ChangedCallback = function(Value)
-                    Configuration.ESPKey = Value
-                end
-            })
-            Configuration.ESPKey = pcall(UserInputService.GetStringForKeyCode, UserInputService, ESPKeybind.Value) and Enum.KeyCode[ESPKeybind.Value] or Enum.UserInputType.MouseButton2
-        end
-
-        local ESPBoxToggle = ESPSection:AddToggle("ESPBox", { Title = "ESP Box", Description = "Creates the ESP Box around the Players", Default = Configuration.ESPBox })
-        ESPBoxToggle:OnChanged(function(Value)
-            Configuration.ESPBox = Value
-        end)
-
-        local ESPBoxFilledToggle = ESPSection:AddToggle("ESPBoxFilled", { Title = "ESP Box Filled", Description = "Makes the ESP Box Filled", Default = Configuration.ESPBoxFilled })
-        ESPBoxFilledToggle:OnChanged(function(Value)
-            Configuration.ESPBoxFilled = Value
-        end)
-
-        local NameESPToggle = ESPSection:AddToggle("NameESP", { Title = "Name ESP", Description = "Creates the Name ESP above the Players", Default = Configuration.NameESP })
-        NameESPToggle:OnChanged(function(Value)
-            Configuration.NameESP = Value
-        end)
-
-        ESPSection:AddDropdown("NameESPFont", {
-            Title = "Name ESP Font",
-            Description = "Changes the Name ESP Font",
-            Values = { "UI", "System", "Plex", "Monospace" },
-            Default = Configuration.NameESPFont,
-            Callback = function(Value)
-                Configuration.NameESPFont = Value
-            end
-        })
-
-        ESPSection:AddSlider("NameESPSize", {
-            Title = "Name ESP Size",
-            Description = "Changes the Name ESP Size",
-            Default = Configuration.NameESPSize,
-            Min = 8,
-            Max = 28,
-            Rounding = 1,
-            Callback = function(Value)
-                Configuration.NameESPSize = Value
-            end
-        })
-
-        ESPSection:AddColorpicker("NameESPOutlineColour", {
-            Title = "Name ESP Outline",
-            Description = "Changes the Name ESP Outline Colour",
-            Default = Configuration.NameESPOutlineColour,
-            Callback = function(Value)
-                Configuration.NameESPOutlineColour = Value
-            end
-        })
-
-        local TracerESPToggle = ESPSection:AddToggle("TracerESP", { Title = "Tracer ESP", Description = "Creates the Tracer ESP in the direction of the Players", Default = Configuration.TracerESP })
-        TracerESPToggle:OnChanged(function(Value)
-            Configuration.TracerESP = Value
-        end)
-
-        ESPSection:AddSlider("ESPThickness", {
-            Title = "ESP Thickness",
-            Description = "Changes the ESP Thickness",
-            Default = Configuration.ESPThickness,
-            Min = 1,
-            Max = 10,
-            Rounding = 1,
-            Callback = function(Value)
-                Configuration.ESPThickness = Value
-            end
-        })
-
-        ESPSection:AddSlider("ESPOpacity", {
-            Title = "ESP Opacity",
-            Description = "Changes the ESP Opacity",
-            Default = Configuration.ESPOpacity,
-            Min = 0.1,
-            Max = 1,
-            Rounding = 1,
-            Callback = function(Value)
-                Configuration.ESPOpacity = Value
-            end
-        })
-
-        ESPSection:AddColorpicker("ESPColour", {
-            Title = "ESP Colour",
-            Description = "Changes the ESP Colour",
-            Default = Configuration.ESPColour,
-            Callback = function(Value)
-                Configuration.ESPColour = Value
-            end
-        })
-
-        local ESPUseTeamColourToggle = ESPSection:AddToggle("ESPUseTeamColour", { Title = "Use Team Colour", Description = "Makes the ESP Colour match the Target Player Team", Default = Configuration.ESPUseTeamColour })
-        ESPUseTeamColourToggle:OnChanged(function(Value)
-            Configuration.ESPUseTeamColour = Value
-        end)
-
-        local VisualsSection = Tabs.Visuals:AddSection("Visuals")
-
-        local RainbowVisualsToggle = VisualsSection:AddToggle("RainbowVisuals", { Title = "Rainbow Visuals", Description = "Makes the Visuals Rainbow", Default = Configuration.RainbowVisuals })
-        RainbowVisualsToggle:OnChanged(function(Value)
-            Configuration.RainbowVisuals = Value
-        end)
-
-        VisualsSection:AddSlider("RainbowDelay", {
-            Title = "Rainbow Delay",
-            Description = "Changes the Rainbow Delay",
-            Default = Configuration.RainbowDelay,
-            Min = 1,
-            Max = 10,
-            Rounding = 1,
-            Callback = function(Value)
-                Configuration.RainbowDelay = Value
-            end
-        })
-    else
-        ShowWarning = true
+        Configuration.FoVKey = pcall(UserInputService.GetStringForKeyCode, UserInputService, FoVKeybind.Value) and Enum.KeyCode[FoVKeybind.Value] or Enum.UserInputType.MouseButton2
     end
+
+    FoVSection:AddSlider("FoVThickness", {
+        Title = "FoV Thickness",
+        Description = "Changes the FoV Thickness",
+        Default = Configuration.FoVThickness,
+        Min = 1,
+        Max = 10,
+        Rounding = 1,
+        Callback = function(Value)
+            Configuration.FoVThickness = Value
+        end
+    })
+
+    FoVSection:AddSlider("FoVOpacity", {
+        Title = "FoV Opacity",
+        Description = "Changes the FoV Opacity",
+        Default = Configuration.FoVOpacity,
+        Min = 0.1,
+        Max = 1,
+        Rounding = 1,
+        Callback = function(Value)
+            Configuration.FoVOpacity = Value
+        end
+    })
+
+    local FoVFilledToggle = FoVSection:AddToggle("FoVFilled", { Title = "FoV Filled", Description = "Makes the FoV Filled", Default = Configuration.FoVFilled })
+    FoVFilledToggle:OnChanged(function(Value)
+        Configuration.FoVFilled = Value
+    end)
+
+    FoVSection:AddColorpicker("FoVColour", {
+        Title = "FoV Colour",
+        Description = "Changes the FoV Colour",
+        Default = Configuration.FoVColour,
+        Callback = function(Value)
+            Configuration.FoVColour = Value
+        end
+    })
+
+    local ESPSection = Tabs.Visuals:AddSection("ESP")
+
+    local SmartESPToggle = ESPSection:AddToggle("SmartESP", { Title = "Smart ESP", Description = "Does not ESP the Whitelisted Players", Default = Configuration.SmartESP })
+    SmartESPToggle:OnChanged(function(Value)
+        Configuration.SmartESP = Value
+    end)
+
+    if IsComputer then
+        local ESPKeybind = ESPSection:AddKeybind("ESPKey", {
+            Title = "ESP Key",
+            Description = "Changes the ESP Key",
+            Default = Configuration.ESPKey,
+            ChangedCallback = function(Value)
+                Configuration.ESPKey = Value
+            end
+        })
+        Configuration.ESPKey = pcall(UserInputService.GetStringForKeyCode, UserInputService, ESPKeybind.Value) and Enum.KeyCode[ESPKeybind.Value] or Enum.UserInputType.MouseButton2
+    end
+
+    local ESPBoxToggle = ESPSection:AddToggle("ESPBox", { Title = "ESP Box", Description = "Creates the ESP Box around the Players", Default = Configuration.ESPBox })
+    ESPBoxToggle:OnChanged(function(Value)
+        Configuration.ESPBox = Value
+    end)
+
+    local ESPBoxFilledToggle = ESPSection:AddToggle("ESPBoxFilled", { Title = "ESP Box Filled", Description = "Makes the ESP Box Filled", Default = Configuration.ESPBoxFilled })
+    ESPBoxFilledToggle:OnChanged(function(Value)
+        Configuration.ESPBoxFilled = Value
+    end)
+
+    local NameESPToggle = ESPSection:AddToggle("NameESP", { Title = "Name ESP", Description = "Creates the Name ESP above the Players", Default = Configuration.NameESP })
+    NameESPToggle:OnChanged(function(Value)
+        Configuration.NameESP = Value
+    end)
+
+    ESPSection:AddDropdown("NameESPFont", {
+        Title = "Name ESP Font",
+        Description = "Changes the Name ESP Font",
+        Values = { "UI", "System", "Plex", "Monospace" },
+        Default = Configuration.NameESPFont,
+        Callback = function(Value)
+            Configuration.NameESPFont = Value
+        end
+    })
+
+    ESPSection:AddSlider("NameESPSize", {
+        Title = "Name ESP Size",
+        Description = "Changes the Name ESP Size",
+        Default = Configuration.NameESPSize,
+        Min = 8,
+        Max = 28,
+        Rounding = 1,
+        Callback = function(Value)
+            Configuration.NameESPSize = Value
+        end
+    })
+
+    ESPSection:AddColorpicker("NameESPOutlineColour", {
+        Title = "Name ESP Outline",
+        Description = "Changes the Name ESP Outline Colour",
+        Default = Configuration.NameESPOutlineColour,
+        Callback = function(Value)
+            Configuration.NameESPOutlineColour = Value
+        end
+    })
+
+    local TracerESPToggle = ESPSection:AddToggle("TracerESP", { Title = "Tracer ESP", Description = "Creates the Tracer ESP in the direction of the Players", Default = Configuration.TracerESP })
+    TracerESPToggle:OnChanged(function(Value)
+        Configuration.TracerESP = Value
+    end)
+
+    ESPSection:AddSlider("ESPThickness", {
+        Title = "ESP Thickness",
+        Description = "Changes the ESP Thickness",
+        Default = Configuration.ESPThickness,
+        Min = 1,
+        Max = 10,
+        Rounding = 1,
+        Callback = function(Value)
+            Configuration.ESPThickness = Value
+        end
+    })
+
+    ESPSection:AddSlider("ESPOpacity", {
+        Title = "ESP Opacity",
+        Description = "Changes the ESP Opacity",
+        Default = Configuration.ESPOpacity,
+        Min = 0.1,
+        Max = 1,
+        Rounding = 1,
+        Callback = function(Value)
+            Configuration.ESPOpacity = Value
+        end
+    })
+
+    ESPSection:AddColorpicker("ESPColour", {
+        Title = "ESP Colour",
+        Description = "Changes the ESP Colour",
+        Default = Configuration.ESPColour,
+        Callback = function(Value)
+            Configuration.ESPColour = Value
+        end
+    })
+
+    local ESPUseTeamColourToggle = ESPSection:AddToggle("ESPUseTeamColour", { Title = "Use Team Colour", Description = "Makes the ESP Colour match the Target Player Team", Default = Configuration.ESPUseTeamColour })
+    ESPUseTeamColourToggle:OnChanged(function(Value)
+        Configuration.ESPUseTeamColour = Value
+    end)
+
+    local VisualsSection = Tabs.Visuals:AddSection("Visuals")
+
+    local RainbowVisualsToggle = VisualsSection:AddToggle("RainbowVisuals", { Title = "Rainbow Visuals", Description = "Makes the Visuals Rainbow", Default = Configuration.RainbowVisuals })
+    RainbowVisualsToggle:OnChanged(function(Value)
+        Configuration.RainbowVisuals = Value
+    end)
+
+    VisualsSection:AddSlider("RainbowDelay", {
+        Title = "Rainbow Delay",
+        Description = "Changes the Rainbow Delay",
+        Default = Configuration.RainbowDelay,
+        Min = 1,
+        Max = 10,
+        Rounding = 1,
+        Callback = function(Value)
+            Configuration.RainbowDelay = Value
+        end
+    })
+end
 
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
