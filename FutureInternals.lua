@@ -237,7 +237,7 @@ do
         end)
         if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
             -- Use load instead of loadstring
-            local func, loadError = load(Result)
+            local func, loadError = _G.load(Result)
             if func then
                 Fluent = func()
                 if Fluent.Premium then
