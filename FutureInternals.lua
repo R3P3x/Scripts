@@ -4,7 +4,7 @@ print("Loading Future Internals V" .. Version .. "!")
 
 --! Debugger
 
-local DEBUG = false
+local DEBUG = true
 
 if DEBUG then
     getfenv().getfenv = function()
