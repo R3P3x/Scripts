@@ -1,4 +1,4 @@
-Version = "1.0.8"
+Version = "1.0.9"
 
 warn("----------------------------------------------------|")
 warn("Loading Future Internals V" .. Version .. "!")
@@ -848,8 +848,8 @@ do
         Tabs.Visuals = Window:AddTab({ Title = "Visuals", Icon = "box" })
 
         Tabs.Visuals:AddParagraph({
-            Title = "Open Aimbot",
-            Content = "✨Universal Aim Assist Framework✨\nhttps://github.com/ttwizz/Open-Aimbot"
+            Title = "Future Internals: Visuals",
+            Content = "Documentation: https://www.Future-Internals.xyz/Visuals\nBugs/Glitches Documentation: https://www.Future-Internals.xyz/Visuals/Bugs"
         })
 
         local FoVSection = Tabs.Visuals:AddSection("FoV")
