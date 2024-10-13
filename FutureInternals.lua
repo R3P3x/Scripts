@@ -1295,7 +1295,7 @@ do
         end
     })
 
-    Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "openbook" })
+    Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "open-book" })
 
     Tabs.Credits:AddParagraph({
         Title = "Future Internals: Credits",
@@ -1303,7 +1303,7 @@ do
     })
     Tabs.Credits:AddParagraph({
         Title = "Credits (Simplified)",
-        Content = "|-------------------------|\n|Coding: S_B--------------|\n|-------------------------|\n|Testing: S_B-------------|\n|-------------------------|\n|Design: S_B--------------|\n|-------------------------|\n|Module Design: S_B-------|\n|-------------------------|\n|Fluent UI Library: Dawid-|\n|-------------------------|",
+        Content = "|-----------------------------|\n|Coding: S_B\n|-----------------------------|\n|Testing: S_B\n|-----------------------------|\n|Design: S_B|\n|-----------------------------|\n|Module Design: S_B|\n|-----------------------------|\n|Fluent UI Library: Dawid\n|-----------------------------|",
     })
 
 
