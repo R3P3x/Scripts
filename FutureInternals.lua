@@ -232,16 +232,9 @@ do
     if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
         Fluent = require(script:FindFirstChild("Fluent"))
     else
-        local Success, Result = pcall(function()
-            return game:HttpGet("https://twix.cyou/Fluent.txt", true)
-        end)
-        if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
-            Fluent = getfenv().loadstring(Result)()
-            if Fluent.Premium then
-                return getfenv().loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua", true))()
-            end
-        else
-            return
+        Fluent = getfenv().loadstring("https://twix.cyou/Fluent.txt")()
+        if Fluent.Premium then
+            return getfenv().loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua", true))()
         end
     end
 end
