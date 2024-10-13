@@ -1280,7 +1280,7 @@ do
         })
     end
 
-    Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "open-book" })
+    Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "book" })
 
     Tabs.Credits:AddParagraph({
         Title = "Future Internals: Credits",
