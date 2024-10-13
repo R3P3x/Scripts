@@ -165,14 +165,12 @@ Configuration.TargetPlayers = ImportedConfiguration["TargetPlayers"] or {}
 --? Visuals
 
 Configuration.FoV = ImportedConfiguration["FoV"] or false
-Configuration.FoVKey = ImportedConfiguration["FoVKey"] or "R"
 Configuration.FoVThickness = ImportedConfiguration["FoVThickness"] or 2
 Configuration.FoVOpacity = ImportedConfiguration["FoVOpacity"] or 1
 Configuration.FoVFilled = ImportedConfiguration["FoVFilled"] or false
 Configuration.FoVColour = ImportedConfiguration["FoVColour"] or Color3.fromRGB(255, 0, 0)
 
 Configuration.SmartESP = ImportedConfiguration["SmartESP"] or false
-Configuration.ESPKey = ImportedConfiguration["ESPKey"] or "T"
 Configuration.ESPBox = ImportedConfiguration["ESPBox"] or false
 Configuration.ESPBoxFilled = ImportedConfiguration["ESPBoxFilled"] or false
 Configuration.NameESP = ImportedConfiguration["NameESP"] or false
@@ -857,19 +855,8 @@ do
         local FoVToggle = FoVSection:AddToggle("FoV", { Title = "FoV", Description = "Graphically Displays the FoV Radius", Default = Configuration.FoV })
         FoVToggle:OnChanged(function(Value)
             Configuration.FoV = Value
+            ShowingFoV = Value
         end)
-
-        if IsComputer then
-            local FoVKeybind = FoVSection:AddKeybind("FoVKey", {
-                Title = "FoV Key",
-                Description = "Changes the FoV Key",
-                Default = Configuration.FoVKey,
-                ChangedCallback = function(Value)
-                    Configuration.FoVKey = Value
-                end
-            })
-            Configuration.FoVKey = pcall(UserInputService.GetStringForKeyCode, UserInputService, FoVKeybind.Value) and Enum.KeyCode[FoVKeybind.Value] or Enum.UserInputType.MouseButton2
-        end
 
         FoVSection:AddSlider("FoVThickness", {
             Title = "FoV Thickness",
@@ -916,21 +903,10 @@ do
             Configuration.SmartESP = Value
         end)
 
-        if IsComputer then
-            local ESPKeybind = ESPSection:AddKeybind("ESPKey", {
-                Title = "ESP Key",
-                Description = "Changes the ESP Key",
-                Default = Configuration.ESPKey,
-                ChangedCallback = function(Value)
-                    Configuration.ESPKey = Value
-                end
-            })
-            Configuration.ESPKey = pcall(UserInputService.GetStringForKeyCode, UserInputService, ESPKeybind.Value) and Enum.KeyCode[ESPKeybind.Value] or Enum.UserInputType.MouseButton2
-        end
-
         local ESPBoxToggle = ESPSection:AddToggle("ESPBox", { Title = "ESP Box", Description = "Creates the ESP Box around the Players", Default = Configuration.ESPBox })
         ESPBoxToggle:OnChanged(function(Value)
             Configuration.ESPBox = Value
+            ShowingESP = Value
         end)
 
         local ESPBoxFilledToggle = ESPSection:AddToggle("ESPBoxFilled", { Title = "ESP Box Filled", Description = "Makes the ESP Box Filled", Default = Configuration.ESPBoxFilled })
