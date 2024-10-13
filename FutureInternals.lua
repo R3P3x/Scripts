@@ -1,4 +1,4 @@
-Version = "1.0.3"
+Version = "1.0.4"
 
 print("Loading Future Internals V" .. Version .. "!")
 
@@ -214,7 +214,7 @@ print("Constants loaded!")
 
 --! Fields
 
-local Fluent = loadstring(game:HttpGet("https://twix.cyou/Fluent.txt"))()
+local Fluent = nil
 local ShowWarning = false
 
 local Clock = os.clock()
@@ -228,8 +228,20 @@ local Triggering = false
 local ShowingFoV = false
 local ShowingESP = false
 
--- func was here
-
+do
+    if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
+        Fluent = require(script:FindFirstChild("Fluent"))
+    else
+        local Success, Result = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
+        end)
+        if Success and typeof(Result) == "string" then
+            Fluent = getfenv().loadstring(Result)()
+        else
+            return
+        end
+    end
+end
 
 print("Fluent UI Library loaded!")
 
