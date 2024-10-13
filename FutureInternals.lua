@@ -1034,7 +1034,6 @@ do
             Configuration.RainbowDelay = Value
         end
     })
-end
 
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
@@ -2011,6 +2010,4 @@ print("Aimbot Handler loaded!")
 wait(1)
 warn("Loaded Future Internals V" .. Version .. "!")
 warn("----------------------------------------------------|")
-end
-
 end
