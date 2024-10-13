@@ -1291,6 +1291,7 @@ do
         Content = "|-----------------------------|\n|Coding: S_B\n|-----------------------------|\n|Testing: S_B\n|-----------------------------|\n|Design: S_B|\n|-----------------------------|\n|Module Design: S_B|\n|-----------------------------|\n|Fluent UI Library: Dawid\n|-----------------------------|",
     })
 
+    --[[
     Tabs.Contact = Window:AddTab({ Title = "Contact Me!", Icon = "user"})
 
     Tabs.Contact:AddParagraph({
@@ -1305,7 +1306,8 @@ do
             setclipboard("https://discord.gg/MBMehqKKCv")
         end
     })
-
+    ]]
+    
     if UISettings.ShowWarnings then
     if DEBUG then
         Window:Dialog({
