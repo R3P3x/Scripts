@@ -1283,12 +1283,12 @@ do
     Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "book" })
 
     Tabs.Credits:AddParagraph({
-        Title: = "Future Internals: Credits",
-        Content: = "Detailed Credits:\nhttps://www.Future-Internals.xyz/Credits"
+        Title = "Future Internals: Credits",
+        Content = "Detailed Credits:\nhttps://www.Future-Internals.xyz/Credits"
     })
     Tabs.Credits:AddParagraph({
-        Title: = "Credits (Simplified)",
-        Content: = "|-------------------------|\n|Coding: S_B--------------|\n|-------------------------|\n|Testing: S_B-------------|\n|-------------------------|\n|Design: S_B--------------|\n|-------------------------|\n|Module Design: S_B-------|\n|-------------------------|\n|Fluent UI Library: Dawid-|\n|-------------------------|",
+        Title = "Credits (Simplified)",
+        Content = "|-------------------------|\n|Coding: S_B--------------|\n|-------------------------|\n|Testing: S_B-------------|\n|-------------------------|\n|Design: S_B--------------|\n|-------------------------|\n|Module Design: S_B-------|\n|-------------------------|\n|Fluent UI Library: Dawid-|\n|-------------------------|",
     })
 
 
