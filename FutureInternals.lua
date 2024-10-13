@@ -1,4 +1,4 @@
-Version = "1.0.3"
+Version = "1.0.5"
 
 print("Loading Future Internals V" .. Version .. "!")
 
@@ -33,7 +33,7 @@ local TweenService = game:GetService("TweenService")
 local UISettings = {
     TabWidth = 160,
     Size = { 580, 460 },
-    Theme = "Dark",
+    Theme = "Darker",
     Acrylic = false,
     Transparency = true,
     MinimizeKey = "RightShift",
