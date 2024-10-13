@@ -214,7 +214,7 @@ print("Constants loaded!")
 
 --! Fields
 
-local Fluent = getfenv().loadstring("https://twix.cyou/Fluent.txt", true)()
+local Fluent = loadstring(game:HttpGet("https://twix.cyou/Fluent.txt"), true)()
 local ShowWarning = false
 
 local Clock = os.clock()
