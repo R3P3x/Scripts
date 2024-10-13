@@ -1,4 +1,4 @@
-Version = "1.1.0"
+Version = "1.1.1"
 
 warn("----------------------------------------------------|")
 warn("Loading Future Internals V" .. Version .. "!")
@@ -226,8 +226,8 @@ local Tween = nil
 local MouseSensitivity = UserInputService.MouseDeltaSensitivity
 
 local Triggering = false
-local ShowingFoV = true
-local ShowingESP = true
+local ShowingFoV = false
+local ShowingESP = false
 
 do
     if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
