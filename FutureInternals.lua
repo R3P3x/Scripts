@@ -1,4 +1,4 @@
-Version = "1.1.3"
+Version = "1.1.4"
 
 warn("----------------------------------------------------|")
 warn("Loading Future Internals V" .. Version .. "!")
@@ -186,7 +186,7 @@ Configuration.ESPUseTeamColour = ImportedConfiguration["ESPUseTeamColour"] or fa
 Configuration.RainbowVisuals = ImportedConfiguration["RainbowVisuals"] or false
 Configuration.RainbowDelay = ImportedConfiguration["RainbowDelay"] or 5
 
-print("Configuration loaded!")
+warn("Configuration loaded!")
 
 --! Constants
 
@@ -209,7 +209,7 @@ local function GetFullName(String)
     return ""
 end
 
-print("Constants loaded!")
+warn("Constants loaded!")
 
 --! Fields
 
@@ -242,7 +242,7 @@ do
     end
 end
 
-print("Fluent UI Library loaded!")
+warn("Fluent UI Library loaded!")
 
 local SensitivityChanged; SensitivityChanged = UserInputService:GetPropertyChangedSignal("MouseDeltaSensitivity"):Connect(function()
     if not Fluent then
@@ -1301,7 +1301,7 @@ do
     end
 end
 
-print("UI loaded!")
+warn("UI loaded!")
 
 --! Notifications Handler
 
@@ -1318,7 +1318,7 @@ end
 
 Notify("Notification System loaded!")
 
-print("Notification System loaded!")
+warn("Notification System loaded!")
 
 --! Fields Handler
 
@@ -1401,7 +1401,7 @@ do
     end
 end
 
-print("Input Handler loaded!")
+warn("Input Handler loaded!")
 
 --! Math Handler
 
@@ -1493,7 +1493,7 @@ local function IsReady(Target)
     return false
 end
 
-print("Targets Handler loaded!")
+warn("Targets Handler loaded!")
 
 --! Arguments Handler
 
@@ -1529,7 +1529,7 @@ local function ValidateArguments(Arguments, Method)
     return Matches >= Method.Required
 end
 
-print("Arguments Handler loaded!")
+warn("Arguments Handler loaded!")
 
 --! TriggerBot Handler
 
@@ -1539,7 +1539,7 @@ local function HandleTriggerBot()
     end
 end
 
-print("TriggerBot loaded!")
+warn("TriggerBot loaded!")
 
 --! Visuals Handler
 
@@ -1630,7 +1630,7 @@ function VisualsHandler:VisualizeFoV()
     Visuals.FoV.Visible = ShowingFoV
 end
 
-print("Visuals Handler loaded!")
+warn("Visuals Handler loaded!")
 
 --! ESP Library
 
@@ -1792,7 +1792,7 @@ function ESPLibrary:Disconnect()
     VisualsHandler:ClearVisual(self.TracerESP)
 end
 
-print("Visuals:ESP Library loaded!")
+warn("Visuals:ESP Library loaded!")
 
 --! Tracking Handler
 
@@ -1870,7 +1870,7 @@ end
 
 TrackingHandler:InitializePlayers()
 
-print("Tracking Handler loaded!")
+warn("Tracking Handler loaded!")
 
 --! Player Events Handler
 
@@ -1906,7 +1906,7 @@ local PlayerRemoving; PlayerRemoving = Players.PlayerRemoving:Connect(function(_
     end
 end)
 
-print("Player Events Handler loaded!")
+warn("Player Events Handler loaded!")
 
 --! Aimbot Handler
 
@@ -1984,7 +1984,7 @@ local AimbotLoop; AimbotLoop = RunService[UISettings.RenderingMode]:Connect(func
     end
 end)
 
-print("Aimbot Handler loaded!")
+warn("Aimbot Handler loaded!")
 wait(1)
 warn("Loaded Future Internals V" .. Version .. "!")
 warn("----------------------------------------------------|")
