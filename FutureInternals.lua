@@ -1,6 +1,7 @@
 Version = "1.0.8"
 
-print("Loading Future Internals V" .. Version .. "!")
+warn("----------------------------------------------------|")
+warn("Loading Future Internals V" .. Version .. "!")
 
 --! Debugger
 
@@ -2011,5 +2012,6 @@ end)
 
 print("Aimbot Handler loaded!")
 wait(1)
-print("Loaded Future Internals V" .. Version .. "!")
+warn("Loaded Future Internals V" .. Version .. "!")
+warn("----------------------------------------------------|")
 end
