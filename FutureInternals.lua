@@ -1287,7 +1287,7 @@ do
         Content: = "Detailed Credits:\nhttps://www.Future-Internals.xyz/Credits"
     })
     Tabs.Credits:AddParagraph({
-        Title: = "Credits (Simplified)"
+        Title: = "Credits (Simplified)",
         Content: = "|-------------------------|\n|Coding: S_B--------------|\n|-------------------------|\n|Testing: S_B-------------|\n|-------------------------|\n|Design: S_B--------------|\n|-------------------------|\n|Module Design: S_B-------|\n|-------------------------|\n|Fluent UI Library: Dawid-|\n|-------------------------|"
     })
 
