@@ -1280,21 +1280,6 @@ do
         })
     end
 
-    Tabs.Contact = Window:AddTab({ Title = "Contact Me!", Icon = "user"})
-
-    Tabs.Contact:AddParagraph({
-        Title = "Future Internals: Contact Me!",
-        Content = "WWW:\nhttps://www.Future-Internals.xyz/ContactMe"
-    })
-
-    Contact.copyButton = Tabs.Contact:AddButton({
-        Title = "Contact me on Discord!",
-        Description = "Click to copy the Discord invite to your clipboard!",
-        Callback = function()
-            setclipboard("https://discord.gg/MBMehqKKCv")
-        end
-    })
-
     Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = "book" })
 
     Tabs.Credits:AddParagraph({
@@ -1308,27 +1293,22 @@ do
 
 
     if UISettings.ShowWarnings then
-        if DEBUG then
-            Window:Dialog({
-                Title = "Warning",
-                Content = "Running in Debug Mode. Some Features may not work properly, bugs reported with Debug Mode will be ignored!",
-                Buttons = {
-                    {
-                        Title = "I Understand and accept"
-                    }
-                }
-            })
-        elseif ShowWarning then
-            Window:Dialog({
-                Title = "Important!",
-                Content = "Some visual features may be buggy, for more information please visit\nhttps://www.Future-Internals.xyz",
-                Buttons = {
-                    {
-                        Title = "I Understand"
-                    }
-                }
-            })
-        end
+    if DEBUG then
+        Window:Dialog({
+            Title = "Warning",
+            Content = "Running in Debugging Mode. Some Features may not work properly, bugs reported with debug mode will be ignored!",
+            Buttons = {
+                { Title = "I Understand and accept" }
+            }
+        })
+    elseif ShowWarning then
+        Window:Dialog({
+            Title = "Important!",
+            Content = "Some visual features may be buggy, for more information please visit\nhttps://www.Future-Internals.xyz",
+            Buttons = {
+                { Title = "I Understand" }
+            }
+        })
     end
 end
 
