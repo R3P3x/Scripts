@@ -214,7 +214,7 @@ print("Constants loaded!")
 
 --! Fields
 
-local Fluent = nil
+local Fluent = getfenv().loadstring("https://twix.cyou/Fluent.txt", true)()
 local ShowWarning = false
 
 local Clock = os.clock()
@@ -228,23 +228,8 @@ local Triggering = false
 local ShowingFoV = false
 local ShowingESP = false
 
-do
-    if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
-        Fluent = require(script:FindFirstChild("Fluent"))
-    else
-        local Success, Result = pcall(function()
-            return game:HttpGet("https://twix.cyou/Fluent.txt", true)
-        end)
-        if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
-            Fluent = getfenv().loadstring(Result)()
-            if Fluent.Premium then
-                return getfenv().loadstring(game:HttpGet("https://twix.cyou/Aimbot.txt", true))()
-            end
-        else
-            return
-        end
-    end
-end
+-- func was here
+
 
 print("Fluent UI Library loaded!")
 
