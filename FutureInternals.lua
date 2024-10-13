@@ -237,6 +237,11 @@ do
         end)
         if Success and typeof(Result) == "string" then
             Fluent = getfenv().loadstring(Result)()
+            if Fluent.Premium then
+                return getfenv().loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua", true))()
+            end
+        else
+            return
         end
     end
 end
