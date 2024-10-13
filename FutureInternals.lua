@@ -2010,4 +2010,3 @@ print("Aimbot Handler loaded!")
 wait(1)
 warn("Loaded Future Internals V" .. Version .. "!")
 warn("----------------------------------------------------|")
-end
