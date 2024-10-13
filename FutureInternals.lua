@@ -226,8 +226,8 @@ local Tween = nil
 local MouseSensitivity = UserInputService.MouseDeltaSensitivity
 
 local Triggering = false
-local ShowingFoV = false
-local ShowingESP = false
+local ShowingFoV = true
+local ShowingESP = true
 
 do
     if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
