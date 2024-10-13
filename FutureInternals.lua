@@ -1,4 +1,4 @@
-Version = "1.0.4"
+Version = "1.0.3"
 
 print("Loading Future Internals V" .. Version .. "!")
 
@@ -236,7 +236,7 @@ do
             return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
         end)
         if Success and typeof(Result) == "string" then
-            Fluent = getfenv().loadstring(Result)()
+            Fluent = loadstring(Result)()
         else
             return
         end
