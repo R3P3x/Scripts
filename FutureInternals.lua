@@ -1,4 +1,4 @@
-Version = "1.0.7"
+Version = "1.0.8"
 
 print("Loading Future Internals V" .. Version .. "!")
 
@@ -1291,7 +1291,6 @@ do
         Content = "|-----------------------------|\n|Coding: S_B\n|-----------------------------|\n|Testing: S_B\n|-----------------------------|\n|Design: S_B|\n|-----------------------------|\n|Module Design: S_B|\n|-----------------------------|\n|Fluent UI Library: Dawid\n|-----------------------------|",
     })
 
-    --[[
     Tabs.Contact = Window:AddTab({ Title = "Contact Me!", Icon = "user"})
 
     Tabs.Contact:AddParagraph({
@@ -1299,14 +1298,13 @@ do
         Content = "Website:\nhttps://www.Future-Internals.xyz/ContactMe"
     })
 
-    copyButton = Tabs.Contact:AddButton({
+    Tabs.Contact:AddButton({
         Title = "Contact me on Discord!",
         Description = "Click to copy the Discord invite to your clipboard!",
         Callback = function()
             setclipboard("https://discord.gg/MBMehqKKCv")
         end
     })
-    ]]
     
     if UISettings.ShowWarnings then
     if DEBUG then
