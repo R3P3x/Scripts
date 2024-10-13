@@ -237,8 +237,6 @@ do
         end)
         if Success and typeof(Result) == "string" then
             Fluent = getfenv().loadstring(Result)()
-        else
-            return
         end
     end
 end
