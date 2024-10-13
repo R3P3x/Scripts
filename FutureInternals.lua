@@ -236,6 +236,36 @@ do
             return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
         end)
         if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
+            -- Use load instead of loadstring
+            local func, loadError = load(Result)
+            if func then
+                Fluent = func()
+                if Fluent.Premium then
+                    local premiumFunc, premiumError = load(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua", true))
+                    if premiumFunc then
+                        return premiumFunc()
+                    else
+                        warn("Failed to load premium script: " .. premiumError)
+                    end
+                end
+            else
+                warn("Failed to load Fluent: " .. loadError)
+            end
+        else
+            return
+        end
+    end
+end
+
+--[[
+do
+    if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
+        Fluent = require(script:FindFirstChild("Fluent"))
+    else
+        local Success, Result = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
+        end)
+        if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
             Fluent = getfenv().loadstring(Result)()
             if Fluent.Premium then
                 return getfenv().loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua", true))()
@@ -245,6 +275,7 @@ do
         end
     end
 end
+]]
 
 print("Fluent UI Library loaded!")
 
