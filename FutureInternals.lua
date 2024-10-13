@@ -1291,11 +1291,11 @@ do
         Content = "|--------------------------------|\n|Coding: S_B\n|--------------------------------|\n|Testing: S_B\n|--------------------------------|\n|Design: S_B|\n|--------------------------------|\n|Module Design: S_B|\n|--------------------------------|\n|Fluent UI Library: Dawid\n|--------------------------------|",
     })
 
-    Tabs.Contact = Window:AddTab({ Title = "Contact Me!", Icon = "user"})
+    Tabs.Contact = Window:AddTab({ Title = "Contact Me", Icon = "user"})
 
     Tabs.Contact:AddParagraph({
-        Title = "Future Internals: Contact Me!",
-        Content = "Website:\nhttps://www.Future-Internals.xyz/ContactMe"
+        Title = "Contact Me!",
+        Content = "Report bugs, give me suggestions, or just talk to me!"
     })
 
     Tabs.Contact:AddButton({
