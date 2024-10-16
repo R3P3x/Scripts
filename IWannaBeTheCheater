@@ -44,9 +44,11 @@ end
 
 Notify("hi")
 
-TP = Window:AddTab({Title = "Teleporting", Icon = "waypoint"})
+local Tabs = { TP = Window:AddTab({Title = "Teleporting", Icon = "waypoint"}) }
 
--- TP:AddParagraph("To prevent detection and bans, save at every stage in order!")
+Window:SelectTab(1)
+
+Tabs.TP:AddParagraph("To prevent detection and bans, save at every stage in order!")
 
 plrStage = 0
 
@@ -82,7 +84,7 @@ function toStage(stageNumber)
     end
 end
 
-Fluent.Button(TP, {
+Fluent.Button(Tabs.TP, {
     Text = "Skip Stage",
     OnClick = function()
         Notify("Teleporting to the next stage!")
