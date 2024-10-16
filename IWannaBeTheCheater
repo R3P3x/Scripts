@@ -1,3 +1,4 @@
+warn("LOADING")
 Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt"))
 warn("fluent loaded")
 
