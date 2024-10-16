@@ -27,7 +27,7 @@ local function Notify(text)
     Fluent.Notification("Notification", text)
 end
 
-TP = Window:AddTab({ Title = "Teleporting", Icon = "waypoint"
+TP = Window:AddTab({ Title = "Teleporting", Icon = "waypoint" })
 
 TP:AddParagraph("To prevent detection and bans, save at every stage in order!")
 
