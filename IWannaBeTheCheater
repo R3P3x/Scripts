@@ -1,5 +1,18 @@
 warn("LOADING")
-Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt"))
+do
+    if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
+        Fluent = require(script:FindFirstChild("Fluent"))
+    else
+        local Success, Result = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
+        end)
+        if Success and typeof(Result) == "string" then
+            Fluent = loadstring(Result)()
+        else
+            return
+        end
+    end
+end
 warn("fluent loaded")
 
 local UISettings = {
