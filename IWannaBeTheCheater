@@ -102,3 +102,5 @@ Fluent.Button(TP, {
     end
 })
 
+Window.Parent = game.Players.LocalPlayer.PlayerGui
+
