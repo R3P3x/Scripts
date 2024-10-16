@@ -29,7 +29,7 @@ end
 
 TP = Window:AddTab({ Title = "Teleporting", Icon = "waypoint" })
 
-TP:AddParagraph("To prevent detection and bans, save at every stage in order!")
+Window.TP:AddParagraph("To prevent detection and bans, save at every stage in order!")
 
 plrStage = 0
 
