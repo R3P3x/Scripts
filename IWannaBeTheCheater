@@ -38,29 +38,29 @@ function getStage()
 end
 
 function toStage(stageNumber)
-    if stageNumber = 1 then
+    if stageNumber == 1 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(-56.25, 18, 124.5, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-    elseif  stageNumber = 2 then
+    elseif  stageNumber == 2 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(-48.25, 18, 224.5, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-    elseif  stageNumber = 3 then
+    elseif  stageNumber == 3 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(6.375, 52, 353.125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-    elseif  stageNumber = 4 then
+    elseif  stageNumber == 4 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(153.375, 53, 353.125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-    elseif  stageNumber = 5 then
+    elseif  stageNumber == 5 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(250.375, 53, 353.125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-    elseif  stageNumber = 6 then
+    elseif  stageNumber == 6 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(325.375, 54, 353.125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-    elseif  stageNumber = 7 then
+    elseif  stageNumber == 7 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(425.375, 68, 353.125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-    elseif  stageNumber = 8 then
+    elseif  stageNumber == 8 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(509.375, 68, 359.125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-    elseif  stageNumber = 9 then
+    elseif  stageNumber == 9 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(499.375, 68, 209.125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
-    elseif  stageNumber = 10 then
+    elseif  stageNumber == 10 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(458.25, 68, 153.25, -1, 0, 0, 0, 1, 0, 0, 0, -1)
-    elseif  stageNumber = 11 then
+    elseif  stageNumber == 11 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(458.25, 68, 88.25, -1, 0, 0, 0, 1, 0, 0, 0, -1)
-    elseif  stageNumber = 12 then
+    elseif  stageNumber == 12 then
         game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(458.5, 68, -27.5, -1, 0, 0, 0, 1, 0, 0, 0, -1)
     end
 end
