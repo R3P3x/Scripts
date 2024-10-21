@@ -285,25 +285,25 @@ warn("Player Events Handler loaded!")
 while Grinder == true do
     tweenServie = game:GetService("TweenService")
 
-    1 = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local 1 = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    2 = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local 2 = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    3 = TweenInfo.new(50, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local 3 = TweenInfo.new(50, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    4 = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local 4 = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    finishh = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local finishh = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    11 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 1, {Position = pos1})
+    local 11 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 1, {Position = pos1})
 
-    22 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 2, {Position = pos2})
+    local 22 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 2, {Position = pos2})
 
-    33 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 3, {Position = pos3})
+    local 33 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 3, {Position = pos3})
 
-    44 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 4, {Position = pos4})
+    local 44 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 4, {Position = pos4})
 
-    finishfinish = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, finishh, {Position = finish})
+    local finishfinish = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, finishh, {Position = finish})
 
     11:Play()
     task.wait(3.5)
