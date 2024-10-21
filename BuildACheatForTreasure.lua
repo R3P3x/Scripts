@@ -1,10 +1,10 @@
 tweenService = game:GetService("TweenService")
 
-pos1 = Vector3.new(-57.53654861450195, 34.05609130859375, -225.95188903808594)
-pos2 = Vector3.new(-164.93063354492188, 51.40309524536133, 1275.562744140625)
-pos3 = Vector3.new(-130.416259765625, 51.94549560546875, 8228.53515625)
-pos4 = Vector3.new(-51.67303466796875, 17.631446838378906, 8680.4306640625)
-finish = Vector3.new(-55.36488342285156, -360.0461730957031, 9488.30859375)
+local pos1 = Vector3.new(-57.53654861450195, 34.05609130859375, -225.95188903808594)
+local pos2 = Vector3.new(-164.93063354492188, 51.40309524536133, 1275.562744140625)
+local pos3 = Vector3.new(-130.416259765625, 51.94549560546875, 8228.53515625)
+local pos4 = Vector3.new(-51.67303466796875, 17.631446838378906, 8680.4306640625)
+local finish = Vector3.new(-55.36488342285156, -360.0461730957031, 9488.30859375)
 
 -- 30
 
@@ -285,33 +285,33 @@ warn("Player Events Handler loaded!")
 while Grinder == true do
     tweenServie = game:GetService("TweenService")
 
-    local 1 = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local one = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    local 2 = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local two = TweenInfo.new(3, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    local 3 = TweenInfo.new(50, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local three = TweenInfo.new(50, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    local 4 = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+    local four = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
     local finishh = TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
 
-    local 11 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 1, {Position = pos1})
+    local oneone = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, one, {Position = pos1})
 
-    local 22 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 2, {Position = pos2})
+    local twotwo = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, two, {Position = pos2})
 
-    local 33 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 3, {Position = pos3})
+    local threethree = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, three, {Position = pos3})
 
-    local 44 = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, 4, {Position = pos4})
+    local fourfour = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, four, {Position = pos4})
 
     local finishfinish = tweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, finishh, {Position = finish})
 
-    11:Play()
+    oneone:Play()
     task.wait(3.5)
-    22:Play()
+    twotwo:Play()
     task.wait(3.5)
-    33:Play()
+    threethree:Play()
     task.wait(50.5)
-    44:Play()
+    fourfour:Play()
     task.wait(2.5)
     finishfinish:Play()
     task.wait(23.5)
