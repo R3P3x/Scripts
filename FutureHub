@@ -91,7 +91,7 @@ do
         MinimizeKey = UISettings.MinimizeKey
     })
 
-    local Tabs = { Scripts = Window:AddTab({ Title = "Scripts", Icon = "list }) }
+    local Tabs = { Scripts = Window:AddTab({ Title = "Scripts", Icon = "list" }) }
 
     Window:SelectTab(1)
 
