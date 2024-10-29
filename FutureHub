@@ -180,7 +180,6 @@ warn("Fluent UI Library loaded!")
         }
     })
   end
-wait(1)
 warn("----------------------------------------------------|")
 warn("Loaded Future Hub V" .. Version .. "!")
 warn("----------------------------------------------------|")
