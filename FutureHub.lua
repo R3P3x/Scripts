@@ -107,7 +107,7 @@ do
 
     Universal:AddButton({
         Title = "Future Internals",
-        Description = "Aimbot, esp, triggerboy, all you need for competetive games!.",
+        Description = "Aimbot, esp, triggerbot, all you need for competetive games!.",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua"))()
         end
