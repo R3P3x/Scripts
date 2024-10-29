@@ -59,7 +59,7 @@ if game.PlaceId == 1224212277 then
 	end
 	function notify(text, duration)
 		Rayfield:Notify({
-			Title = "Ruby Hub",
+			Title = "Ruby Hub: Future Hub crack!!!",
 			Content = text,
 			Duration = duration,
 			Image = 4483362458,
@@ -187,13 +187,13 @@ if game.PlaceId == 1224212277 then
 
 	function notifyclick(text, clicktext)
 		Rayfield:Notify({
-			Title = "Ruby Hub: Future Crack!",
+			Title = "Ruby Hub: Future Hub crack!!1",
 			Content = text,
 			Duration = 1,
 			Image = 4483362458,
 			Actions = { -- Notification Buttons
 				Ignore = {
-					Name = "Okay!",
+					Name = "I Love Future Hub!",
 					Callback = function()
 						--
 					end
@@ -345,7 +345,7 @@ if game.PlaceId == 1224212277 then
 		while mc2 < moderatorcount do
 			if v.Name == _G.madcitymods["m" .. mc2] then
 				if _G.detectedoption == "Kick" then
-					game.Players.LocalPlayer:Kick("Ruby Hub: Future Crack!!!! - Mad City Mod Detected.")
+					game.Players.LocalPlayer:Kick("Ruby Hub: Future Hub crack!!!! - Mad City Mod Detected.")
 					break
 				elseif _G.detectedoption == "UseRubyHub" then
 					break
@@ -386,18 +386,16 @@ if game.PlaceId == 1224212277 then
 	end
 	ModifiedName = "Ruby Hub Free"
 	if premium and ownsgamepass then
-		ModifiedName = "Ruby Hub Premium but its free!! Future Crack!"
-	else
-		ModifiedName = "Ruby Hub Free"
+		ModifiedName = "Ruby Hub Premium but its free!! Future Hub crack!1!"
 	end
 	local Window = Rayfield:CreateWindow({
 	Name = ModifiedName,
-	LoadingTitle = "Ruby Hub: Future Crack",
-	LoadingSubtitle = 'by ! "Deni210#8309 & Nordbergdk#1684, tested by Doom and this trash script got cracked by Future (from Future Internals!!)',
+	LoadingTitle = "Ruby Hub: Future Hub crack11!",
+	LoadingSubtitle = 'by ! "Deni210#8309 & Nordbergdk#1684, tested by Doom and this trash script got cracked by S_B (from Future Hub!!)',
 	ConfigurationSaving = {
 		Enabled = false,
 		FolderName = nil, -- Create a custom folder for your hub/game
-		FileName = "Ruby Hub: Future Crack"
+		FileName = "Ruby Hub: Future Hub crack"
 	},
         Discord = {
         	Enabled = true,
@@ -2474,7 +2472,7 @@ if game.PlaceId == 1224212277 then
 	HttpService = game:GetService("HttpService")
 	local DiscordSection = CreditsTab:CreateSection("Discord")
 	local discord = CreditsTab:CreateButton({
-	   Name = "Future Hub Discord: dsc.gg/MBMehqKKCv",
+	   Name = "Future Hub Discord: discord.gg/MBMehqKKCv",
 	   Callback = function()
 			setclipboard(tostring("discord.gg/MBMehqKKCv"))
 			l = request or syn.request or http_request
