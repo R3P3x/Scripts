@@ -79,6 +79,21 @@ do
 end
 
 warn("Fluent UI Library loaded!")
+
+do
+    local Window = Fluent:CreateWindow({
+        Title = "Future Internals",
+        SubTitle = "[PRIVATE RELEASE V" .. Version .. "]",
+        TabWidth = UISettings.TabWidth,
+        Size = UDim2.fromOffset(table.unpack(UISettings.Size)),
+        Theme = UISettings.Theme,
+        Acrylic = UISettings.Acrylic,
+        MinimizeKey = UISettings.MinimizeKey
+    })
+
+    local Tabs = { Scripts = Window:AddTab({ Title = "Scripts", Icon = "script" }) }
+
+    Window:SelectTab(1)
     
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
