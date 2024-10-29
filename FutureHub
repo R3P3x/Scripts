@@ -5,23 +5,6 @@ warn("----------------------------------------------------|")
 warn("Loading Future Hub V" .. Version .. "!")
 warn("----------------------------------------------------|")
 
---! Debugger
-
-local DEBUG = false
-
-if DEBUG then
-    getfenv().getfenv = function()
-        return setmetatable({}, {
-            __index = function()
-                return function()
-                    return true
-                end
-            end
-        })
-    end
-end
-
-
 --! Services
 
 local HttpService = game:GetService("HttpService")
@@ -49,7 +32,7 @@ local InterfaceManager = {}
 
 function InterfaceManager:ImportSettings()
     pcall(function()
-        if not DEBUG and getfenv().isfile and getfenv().readfile and getfenv().isfile("UISettings.F_INT") and getfenv().readfile("UISettings.F_INT") then
+        if getfenv().isfile and getfenv().readfile and getfenv().isfile("UISettings.F_INT") and getfenv().readfile("UISettings.F_INT") then
             for Key, Value in next, HttpService:JSONDecode(getfenv().readfile("UISettings.F_INT")) do
                 UISettings[Key] = Value
             end
@@ -59,7 +42,7 @@ end
 
 function InterfaceManager:ExportSettings()
     pcall(function()
-        if not DEBUG and getfenv().isfile and getfenv().readfile and getfenv().writefile then
+        if getfenv().isfile and getfenv().readfile and getfenv().writefile then
             getfenv().writefile("UISettings.F_LOADER", HttpService:JSONEncode(UISettings))
         end
     end)
