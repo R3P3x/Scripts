@@ -91,10 +91,70 @@ do
         MinimizeKey = UISettings.MinimizeKey
     })
 
-    local Tabs = { Scripts = Window:AddTab({ Title = "Scripts", Icon = "script" }) }
+    local Tabs = { Scripts = Window:AddTab({ Title = "Scripts", Icon = "list }) }
 
     Window:SelectTab(1)
-    
+
+    Universal = Tabs.Scripts:AddSection("Universals")
+
+    Universal:AddButton({
+        Title = "Infinite Yield",
+        Description = "THE script.",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+        end
+    })
+
+    Universal:AddButton({
+        Title = "Future Internals",
+        Description = "Aimbot, esp, triggerboy, all you need for competetive games!.",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua"))()
+        end
+    })
+
+    Universal:AddButton({
+        Title = "Invisibility Button",
+        Description = "Might be buggy if map is place in a weird location!.",
+        Callback = function()
+            loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()
+        end
+    })
+
+    Games = Tabs.Scripts:AddSection("Games")
+
+    Games:AddButton({
+        Title = "PrisonWare V1.3",
+        Description = "Game: Prison Life.",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
+        end
+    })
+
+    Games:AddButton({
+        Title = "Baller",
+        Description = "Game: Blade Ball.",
+        Callback = function()
+            loadstring(game:HttpGet("https://pastebin.com/raw/qxA2ETxy"))()
+        end
+    })
+
+    Games:AddButton({
+        Title = "Ruby Hub: Future Hub Crack",
+        Description = "Game: Mad City (Chapter 1).",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/rubyhubmadcitycracked"))()
+        end
+    })
+
+    Games:AddButton({
+        Title = "OminousVibes Hub",
+        Description = "Game: Doors.",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/mxthqus/OminousVibes/refs/heads/main/DOORS.lua"))()
+        end
+    })
+
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
     Tabs.Settings:AddParagraph({
