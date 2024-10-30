@@ -82,7 +82,7 @@ warn("Fluent UI Library loaded!")
 
 do
     local Window = Fluent:CreateWindow({
-        Title = "Future Internals",
+        Title = "Future Hub",
         SubTitle = "[PRIVATE RELEASE V" .. Version .. "]",
         TabWidth = UISettings.TabWidth,
         Size = UDim2.fromOffset(table.unpack(UISettings.Size)),
@@ -132,35 +132,14 @@ do
     })
 
     Games:AddButton({
-        Title = "Baller",
-        Description = "Game: Blade Ball.",
-        Callback = function()
-            loadstring(game:HttpGet("https://pastebin.com/raw/qxA2ETxy"))()
-        end
-    })
-
-    Games:AddButton({
-        Title = "Ruby Hub: Future Hub Crack",
-        Description = "Game: Mad City (Chapter 1).",
+        Title = "Ruby Hub: Future Hub Crack [BROKEN! I AM TRYING TO FIX THIS]",
+        Description = "Game: Mad City (Chapter 1). [THIS WONT DO ANYTHING DONT INJECT!1!11!!]",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/rubyhubmadcitycracked"))()
         end
     })
 
-    Games:AddButton({
-        Title = "OminousVibes Hub",
-        Description = "Game: Doors.",
-        Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/mxthqus/OminousVibes/refs/heads/main/DOORS.lua"))()
-        end
-    })
-
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
-
-    Tabs.Settings:AddParagraph({
-        Title = "Future Internals: Settings",
-        Content = "Documentation:\nhttps://www.Future-Internals.xyz/Settings"
-    })
 
     local UISection = Tabs.Settings:AddSection("UI")
 
