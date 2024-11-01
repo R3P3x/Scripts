@@ -100,7 +100,7 @@ do
     local target = nil
 
     game:WaitForChild("Players")
-
+    --[[
     Kicker:AddDropdown("Target", {
         Title = "Target Player",
         Description = "Sets the target player for the exploit.",
@@ -110,7 +110,7 @@ do
             target = Value.Name
         end
     })
-
+    ]]
     Kicker:AddButton({
         Title = "Exploit",
         Description = "Attempts to crash the target player.",
