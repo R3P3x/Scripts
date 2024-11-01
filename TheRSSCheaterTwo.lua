@@ -111,7 +111,7 @@ do
         end
     })
 
-    Kicker:AddButton({
+    Kicker:AddButton("Exploit", {
         Title = "Exploit",
         Description = "Attempts to crash the target player.",
         Callback = function()
@@ -119,7 +119,7 @@ do
         end
     })
 
-    Kicker:AddButton({
+    Kicker:AddButton("CrashAll", {
         Title = "Crash All",
         Description = "Attempts to crash every player in the server [EXTREMELY BLATANT!!].",
         Callback = function()
