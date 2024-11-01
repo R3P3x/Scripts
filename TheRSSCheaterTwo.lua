@@ -99,23 +99,13 @@ do
 
     local target = nil
 
-    local key = nil
-
     Kicker:AddDropdown("Target", {
         Title = "Target Player",
         Description = "Sets the target player for the exploit.",
-        Values = game.Players:GetPlayers(),
+        Values = game.Players,
         Default = nil,
         Callback = function(Value)
             target = Value.Name
-        end
-    })
-
-    Kicker:AddTextbox("ExploitKey", {
-        Title = "Exploit Key",
-        Description = "Exploit Key (Contact Future in the Future Hub discord and ask for a key).",
-        Callback = function(Input)
-            key = Input
         end
     })
 
@@ -124,7 +114,7 @@ do
         Description = "Attempts to crash the target player.",
         Callback = function()
             local http = game:GetService("HttpService")
-            game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.Script.trig:FireServer(key, target)
+            game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.Script.trig:FireServer(target)
         end
     })
 
@@ -214,7 +204,15 @@ do
             setclipboard("https://discord.gg/MBMehqKKCv")
         end
     })
+    
+    Window:Dialog({
+        Title = "Loader Hub",
+        Content = "This is the Loader Hub, to actually use the scripts please load them and unload this UI (with the X in the top right)",
+        Buttons = {
+          { Title = "I Understand" }
+        }
+    })
 end
 warn("----------------------------------------------------|")
-warn("Loaded The R.S.S. Cheater 2 V" .. Version .. "!")
+warn("Loaded Future Hub V" .. Version .. "!")
 warn("----------------------------------------------------|")
