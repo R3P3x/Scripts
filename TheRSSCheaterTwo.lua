@@ -1,4 +1,256 @@
+Version = "0.0.2"
 
+warn("----------------------------------------------------|")
+warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
+warn("----------------------------------------------------|")
+
+--! Services
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+
+--! Interface Manager
+local UISettings = {
+    TabWidth = 160,
+    Size = { 680, 560 },
+    Theme = "Darker",
+    Acrylic = false,
+    Transparency = false,
+    MinimizeKey = "RightShift",
+    ShowWarnings = true,
+    RenderingMode = "RenderStepped",
+    AutoImport = true
+}
+
+local InterfaceManager = {}
+
+function InterfaceManager:ImportSettings()
+    pcall(function()
+        if getfenv().isfile and getfenv().readfile and getfenv().isfile("UISettings.F_INT") and getfenv().readfile("UISettings.F_INT") then
+            for Key, Value in next, HttpService:JSONDecode(getfenv().readfile("UISettings.F_INT")) do
+                UISettings[Key] = Value
+            end
+        end
+    end)
+end
+
+function InterfaceManager:ExportSettings()
+    pcall(function()
+        if getfenv().isfile and getfenv().readfile and getfenv().writefile then
+            getfenv().writefile("UISettings.F_LOADER", HttpService:JSONEncode(UISettings))
+        end
+    end)
+end
+
+InterfaceManager:ImportSettings()
+
+UISettings.__LAST_RUN__ = os.date()
+InterfaceManager:ExportSettings()
+
+--! Constants
+local Player = Players.LocalPlayer
+local IsComputer = UserInputService.KeyboardEnabled and UserInputService.MouseEnabled
+
+warn("Constants loaded!")
+
+local Fluent = nil
+
+do
+    if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
+        Fluent = require(script:FindFirstChild("Fluent"))
+    else
+        local Success, Result = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
+        end)
+        if Success and typeof(Result) == "string" then
+            Fluent = loadstring(Result)()
+        else
+            return
+        end
+    end
+end
+
+warn("Fluent UI Library loaded!")
+
+do
+    local Window = Fluent:CreateWindow({
+        Title = "The R.S.S. Cheater",
+        SubTitle = "[PRIVATE RELEASE V" .. Version .. "]",
+        TabWidth = UISettings.TabWidth,
+        Size = UDim2.fromOffset(table.unpack(UISettings.Size)),
+        Theme = UISettings.Theme,
+        Acrylic = UISettings.Acrylic,
+        MinimizeKey = UISettings.MinimizeKey
+    })
+
+    local Tabs = { PhaserMods = Window:AddTab({ Title = "Phaser Mods", Icon = "crosshair" }) }
+
+    Window:SelectTab(1)
+
+    local Phaser = Tabs.PhaserMods:AddSection("Phaser Aura")
+
+    local PhaserAura = false
+    local setup = false
+    local PhaserRadius = 25
+    local Visualize = false
+    local Modded = false
+
+    -- Function to check if another player is within the radius
+    local function isPlayerInRadius(targetPlayer)
+        local targetHRP = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
+        local localHRP = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+
+        if targetHRP and localHRP then
+            local distance = (targetHRP.Position - localHRP.Position).magnitude
+            return distance <= PhaserRadius
+        end
+        return false
+    end
+
+    -- Function to handle the aura toggle
+    local function onPhaserAuraToggle(value)
+        PhaserAura = value
+        if PhaserAura then
+            Modded = true
+            while Modded do
+                wait(0.1)  -- Adjust the frequency of checks as needed
+                for _, targetPlayer in ipairs(Players:GetPlayers()) do
+                    if targetPlayer ~= Player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        if isPlayerInRadius(targetPlayer) then
+                            -- Check if the gun is equipped (implement your own logic for this)
+                            if Player.Character:FindFirstChild("Gun") then  -- Replace "Gun" with your actual gun name
+                                local remote = Player.Character.Phaser
+                                remote:FireServer(targetPlayer.Character.HumanoidRootPart.CFrame)  -- Firing at the enemy's HumanoidRootPart
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    -- Connect the toggle to start the aura functionality
+    Phaser:AddToggle("PhaserAura", { Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false })
+    PhaserAura:OnChanged(onPhaserAuraToggle)
+
+    -- Slider for radius
+    Phaser:AddSlider("Radius", {
+        Title = "Phaser Aura Radius",
+        Description = "Sets the trigger radius of Phaser Aura.",
+        Default = 25,
+        Min = 10,
+        Max = 100,
+        Rounding = 1,
+        Callback = function(Value)
+            PhaserRadius = Value
+        end
+    })
+
+    Phaser:AddToggle("VisualizeRadius", {
+        Title = "Visualize Radius",
+        Description = "Whether or not the sphere radius is visible.",
+        Default = false,
+        OnChanged = function(Value)
+            Visualize = Value
+        end
+    })
+
+    Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+
+    local UISection = Tabs.Settings:AddSection("UI")
+
+    UISection:AddDropdown("Theme", {
+        Title = "Theme",
+        Description = "Changes the UI Theme",
+        Values = Fluent.Themes,
+        Default = Fluent.Theme,
+        Callback = function(Value)
+            Fluent:SetTheme(Value)
+            UISettings.Theme = Value
+            InterfaceManager:ExportSettings()
+        end
+    })
+
+    if Fluent.UseAcrylic then
+        UISection:AddToggle("Acrylic", {
+            Title = "Acrylic",
+            Description = "Blurred Background requires Graphic Quality >= 8",
+            Default = Fluent.Acrylic,
+            Callback = function(Value)
+                if not Value or not UISettings.ShowWarnings then
+                    Fluent:ToggleAcrylic(Value)
+                elseif UISettings.ShowWarnings then
+                    Window:Dialog({
+                        Title = "Warning",
+                        Content = "This Option can be detected! Activate it anyway?",
+                        Buttons = {
+                            {
+                                Title = "Confirm",
+                                Callback = function()
+                                    Fluent:ToggleAcrylic(Value)
+                                end
+                            },
+                            {
+                                Title = "Cancel",
+                                Callback = function()
+                                    Fluent.Options.Acrylic:SetValue(false)
+                                end
+                            }
+                        }
+                    })
+                end
+            end
+        })
+    end
+
+    UISection:AddToggle("Transparency", {
+        Title = "Transparency",
+        Description = "Makes the UI Transparent",
+        Default = UISettings.Transparency,
+        Callback = function(Value)
+            Fluent:ToggleTransparency(Value)
+            UISettings.Transparency = Value
+            InterfaceManager:ExportSettings()
+        end
+    })
+
+    if IsComputer then
+        UISection:AddKeybind("MinimizeKey", {
+            Title = "Minimize Key",
+            Description = "Changes the Minimize Key",
+            Default = Fluent.MinimizeKey,
+            ChangedCallback = function(Value)
+                UISettings.MinimizeKey = pcall(UserInputService.GetStringForKeyCode, UserInputService, Value) and UserInputService:GetStringForKeyCode(Value) or "RMB"
+                InterfaceManager:ExportSettings()
+            end
+        })
+        Fluent.MinimizeKeybind = Fluent.Options.MinimizeKey
+    end
+
+    Tabs.Contact = Window:AddTab({ Title = "Contact Me", Icon = "user"})
+
+    Tabs.Contact:AddParagraph({
+        Title = "Contact Me!",
+        Content = "Report bugs, give me suggestions, or just talk to me!"
+    })
+
+    Tabs.Contact:AddButton({
+        Title = "Contact me on Discord!",
+        Description = "Click to copy the Discord invite to your clipboard!",
+        Callback = function()
+            setclipboard("https://discord.gg/MBMehqKKCv")
+        end
+    })
+end
+warn("----------------------------------------------------|")
+warn("Loaded The R.S.S. Cheater 2 V" .. Version .. "!")
+warn("----------------------------------------------------|")
+
+
+
+--[[
 Version = "0.0.1"
 
 warn("----------------------------------------------------|")
@@ -91,44 +343,84 @@ do
         MinimizeKey = UISettings.MinimizeKey
     })
 
-    local Tabs = { Kicker = Window:AddTab({ Title = "Crash Exploit", Icon = "crosshair" }) }
+    local Tabs = { PhaserMods = Window:AddTab({ Title = "Phaser Mods", Icon = "crosshair" }) }
 
     Window:SelectTab(1)
 
-    Kicker = Tabs.Kicker:AddSection("Crasher")
+    Phaser = Tabs.PhaserMods:AddSection("Phaser Aura")
 
-    local target = nil
+    local trigger = 
+    
+    local PhaserAura = false
+    local setup = false
+    local PhaserRadius = 25
+    local Visualize = false
+    local Modded = false
 
-    game:WaitForChild("Players")
-    --[[
-    Kicker:AddDropdown("Target", {
-        Title = "Target Player",
-        Description = "Sets the target player for the exploit.",
-        Values = game.Players,
-        Default = nil,
-        Callback = function(Value)
-            target = Value.Name
-        end
-    })
-    ]]
-    Kicker:AddButton({
-        Title = "Exploit",
-        Description = "Attempts to crash the target player.",
-        Callback = function()
-            game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.Script.trig:FireServer(target)
-        end
-    })
+    game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+	    Modded = false
+        setup = false
+    end)
 
-    Kicker:AddButton({
-        Title = "Crash All",
-        Description = "Attempts to crash every player in the server.\n[INCLUDES YOU, AND IS EXTREMELY BLATANT!!]",
-        Callback = function()
-            for _, player in game.Players do
-                game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.Script.trig:FireServer(player)
+    Phaser:AddToggle("PhaserAura", { Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false })
+    PhaserAura:OnChanged(function(Value)
+        if setup = false then
+            local sphere = Instance.new("Part")
+            sphere.Shape = 0
+            sphere.Size = Vector3.new(PhaserRadius,PhaserRadius,PhaserRadius)
+            sphere.CanCollide = false
+            sphere.CanQuery = false
+            sphere.CanTouch = false
+            sphere.Anchored = true
+            if Visualize == true then
+                sphere.Transparency = 0.7
+            else
+                sphere.Transparency = 1
             end
+            sphere.BrickColor = BrickColor.new("Bright red")
+            sphere.Locked = true
+            sphere.Parent = game.Players.LocalPlayer.Character
+            local wc = Instance.new("WeldConstraint")
+            wc.Part1 = sphere
+            wc.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
+            sphere.Name = "PhaserAura"
+            while true do
+                
+            end
+        else
+            
+        end
+    end)
+
+    Phaser:AddSlider("Radius", {
+        Title = "Phaser Aura Radius",
+        Description = "Sets the trigger radius of Phaser Aura.",
+        Default = 25,
+        Min = 10,
+        Max = 100,
+        Rounding = 1,
+        Callback = function(Value)
+            PhaserRadius = Value
         end
     })
 
+    Phaser:AddToggle("VisualizeRadius", {
+        Title = "Visualize Radius",
+        Description = "Whether or not the sphere radius is visible.",
+        Default = false,
+        VisualizeRadius.OnChanged(function(Value)
+            Visualize = true
+        end)
+    })
+    
+    Phaser:AddButton({
+        Title = "",
+        Description = "",
+        Callback = function(Value)
+            
+        end
+    })
+    
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
     local UISection = Tabs.Settings:AddSection("UI")
@@ -215,15 +507,9 @@ do
             setclipboard("https://discord.gg/MBMehqKKCv")
         end
     })
-    
-    Window:Dialog({
-        Title = "Loader Hub",
-        Content = "This is the Loader Hub, to actually use the scripts please load them and unload this UI (with the X in the top right)",
-        Buttons = {
-          { Title = "I Understand" }
-        }
-    })
 end
 warn("----------------------------------------------------|")
 warn("Loaded Future Hub V" .. Version .. "!")
 warn("----------------------------------------------------|")
+]]
+
