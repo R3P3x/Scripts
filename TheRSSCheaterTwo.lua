@@ -214,15 +214,7 @@ do
             setclipboard("https://discord.gg/MBMehqKKCv")
         end
     })
-    
-    Window:Dialog({
-        Title = "Loader Hub",
-        Content = "This is the Loader Hub, to actually use the scripts please load them and unload this UI (with the X in the top right)",
-        Buttons = {
-          { Title = "I Understand" }
-        }
-    })
 end
 warn("----------------------------------------------------|")
-warn("Loaded Future Hub V" .. Version .. "!")
+warn("Loaded The R.S.S. Cheater 2 V" .. Version .. "!")
 warn("----------------------------------------------------|")
