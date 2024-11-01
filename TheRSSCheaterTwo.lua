@@ -1,4 +1,4 @@
-Version = "0.0.4"
+Version = "0.0.5"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -116,8 +116,15 @@ do
                         local targetHRP = target.HRP
                         if isPartInRadius(targetHRP) then
                             if Player.Character:FindFirstChild("Phaser") then
-                                local remote = Player.Character.Phaser.Shoot
-                                remote:FireServer(targetHRP.CFrame)
+                                local remote = Player.Character.Phaser:FindFirstChild("Shoot")
+                                if remote then
+                                    print("Firing at: " .. target.Name)  -- Debug statement
+                                    remote:FireServer(targetHRP.CFrame)
+                                else
+                                    print("Shoot method not found in Phaser.")  -- Debug statement
+                                end
+                            else
+                                print("Phaser not found in character.")  -- Debug statement
                             end
                         end
                     end
@@ -158,12 +165,12 @@ do
 
 
     Phaser:AddToggle("PhaserAuraa", {
-	Title = "Phaser Aura",
-	Description = "Toggles Phaser Aura.",
-	Default = false,
-	OnChanged = function(Value)
-	    onPhaserAuraToggle(Value)
-	end
+        Title = "Phaser Aura",
+        Description = "Toggles Phaser Aura.",
+        Default = false,
+        OnChanged = function(Value)
+            onPhaserAuraToggle(Value)
+        end
     })
 
     Phaser:AddSlider("Radius", {
@@ -274,6 +281,7 @@ do
         end
     })
 end
+
 warn("----------------------------------------------------|")
 warn("Loaded The R.S.S. Cheater 2 V" .. Version .. "!")
 warn("----------------------------------------------------|")
