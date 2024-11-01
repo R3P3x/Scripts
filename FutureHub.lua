@@ -1,5 +1,5 @@
 
-Version = "0.0.1"
+Version = "0.0.2"
 
 warn("----------------------------------------------------|")
 warn("Loading Future Hub V" .. Version .. "!")
@@ -128,6 +128,14 @@ do
         Description = "Game: Prison Life.",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
+        end
+    })
+
+    Games:AddButton({
+        Title = "The R.S.S. Cheater 2",
+        Description = "Game: The R.S.S. Bloxy 2",
+        Callback = function()
+            loadstring(game:HttpGet(""))()
         end
     })
 
