@@ -96,7 +96,37 @@ do
     local PhaserRadius = 25
     local Visualize = false
 
-    local function isPlayerInRadius(targetPlayer)
+    local function isPartInRadius(targetPart)
+        local localHRP = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+
+        if targetPart and localHRP then
+            local distance = (targetPart.Position - localHRP.Position).magnitude
+            return distance <= PhaserRadius
+        end
+        return false
+    end
+
+    local function onPhaserAuraToggle(value)
+        PhaserAura = value
+        if PhaserAura then
+            while PhaserAura do
+                game["Run Service"].Heartbeat:Wait()
+                for _, target in ipairs(workspace:GetChildren()) do
+                    if target:IsA("Model") and target:FindFirstChild("HRP") then
+                        local targetHRP = target.HRP
+                        if isPartInRadius(targetHRP) then
+                            if Player.Character:FindFirstChild("Phaser") then
+                                local remote = Player.Character.Phaser.Shoot
+                                remote:FireServer(targetHRP.CFrame)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+	
+    --[[local function isPlayerInRadius(targetPlayer)
         local targetHRP = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
         local localHRP = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
 
@@ -124,7 +154,7 @@ do
                 end
             end
         end
-    end
+    end]]
 
 
     Phaser:AddToggle("PhaserAuraa", {
