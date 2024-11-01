@@ -102,8 +102,8 @@ do
     Kicker:AddDropdown("Target", {
         Title = "Target Player",
         Description = "Sets the target player for the exploit.",
-        Values = game.Players:GetChildren(),
-        Default = nil,
+        Values = game.Players,
+        Default = game.Players.LocalPlayer,
         Callback = function(Value)
             target = Value.Name
         end
