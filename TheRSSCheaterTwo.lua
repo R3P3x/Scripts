@@ -85,7 +85,7 @@ do
         MinimizeKey = UISettings.MinimizeKey
     })
 
-    local Tabs = { PhaserMods = Window:AddTab({ Title = "Phaser Mods", Icon = "crosshair" }) }
+    local Tabs = { PhaserMods = Window:AddTab({ Title = "Phaser", Icon = "crosshair" }) }
 
     Window:SelectTab(1)
 
@@ -108,7 +108,6 @@ do
         return false
     end
 
-    -- Function to handle the aura toggle
     local function onPhaserAuraToggle(value)
         PhaserAura = value
         if PhaserAura then
@@ -129,8 +128,14 @@ do
     end
 
 
-    Phaser:AddToggle("PhaserAuraa", { Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false })
-    PhaserAuraa:OnChanged(onPhaserAuraToggle)
+    Phaser:AddToggle("PhaserAuraa", {
+	Title = "Phaser Aura",
+	Description = "Toggles Phaser Aura.",
+	Default = false
+	OnChanged = function(Value)
+		onPhaserAuraToggle(Value)
+	end
+    })
 
     Phaser:AddSlider("Radius", {
         Title = "Phaser Aura Radius",
