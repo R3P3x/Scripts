@@ -96,7 +96,6 @@ do
     local PhaserRadius = 25
     local Visualize = false
 
-    -- Function to check if another player is within the radius
     local function isPlayerInRadius(targetPlayer)
         local targetHRP = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
         local localHRP = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
@@ -112,7 +111,7 @@ do
         PhaserAura = value
         if PhaserAura then
             while PhaserAura == true do
-                wait(0.1)  -- Adjust the frequency of checks as needed
+                game["Run Service"].Heartbeat:Wait()
                 for _, targetPlayer in ipairs(Players:GetPlayers()) do
                     if targetPlayer ~= Player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
                         if isPlayerInRadius(targetPlayer) then
@@ -131,9 +130,9 @@ do
     Phaser:AddToggle("PhaserAuraa", {
 	Title = "Phaser Aura",
 	Description = "Toggles Phaser Aura.",
-	Default = false
+	Default = false,
 	OnChanged = function(Value)
-		onPhaserAuraToggle(Value)
+	    onPhaserAuraToggle(Value)
 	end
     })
 
@@ -510,7 +509,7 @@ do
     })
 end
 warn("----------------------------------------------------|")
-warn("Loaded Future Hub V" .. Version .. "!")
+warn("Loaded The R.S.S. Cheater 2 V" .. Version .. "!")
 warn("----------------------------------------------------|")
 ]]
 
