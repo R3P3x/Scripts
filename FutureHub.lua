@@ -131,14 +131,6 @@ do
         end
     })
 
-    Games:AddButton({
-        Title = "Ruby Hub: Future Hub Crack [BROKEN! I AM TRYING TO FIX THIS]",
-        Description = "Game: Mad City (Chapter 1). [THIS WONT DO ANYTHING DONT INJECT!1!11!!]",
-        Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/rubyhubmadcitycracked"))()
-        end
-    })
-
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
     local UISection = Tabs.Settings:AddSection("UI")
