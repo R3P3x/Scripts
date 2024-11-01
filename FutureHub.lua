@@ -135,7 +135,7 @@ do
         Title = "The R.S.S. Cheater 2",
         Description = "Game: The R.S.S. Bloxy 2",
         Callback = function()
-            loadstring(game:HttpGet(""))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/TheRSSCheaterTwo.lua"))()
         end
     })
 
