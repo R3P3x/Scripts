@@ -95,7 +95,6 @@ do
     local setup = false
     local PhaserRadius = 25
     local Visualize = false
-    local Modded = false
 
     -- Function to check if another player is within the radius
     local function isPlayerInRadius(targetPlayer)
@@ -113,16 +112,14 @@ do
     local function onPhaserAuraToggle(value)
         PhaserAura = value
         if PhaserAura then
-            Modded = true
-            while Modded do
+            while PhaserAura == true do
                 wait(0.1)  -- Adjust the frequency of checks as needed
                 for _, targetPlayer in ipairs(Players:GetPlayers()) do
                     if targetPlayer ~= Player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
                         if isPlayerInRadius(targetPlayer) then
-                            -- Check if the gun is equipped (implement your own logic for this)
-                            if Player.Character:FindFirstChild("Gun") then  -- Replace "Gun" with your actual gun name
-                                local remote = Player.Character.Phaser
-                                remote:FireServer(targetPlayer.Character.HumanoidRootPart.CFrame)  -- Firing at the enemy's HumanoidRootPart
+                            if Player.Character:FindFirstChild("Phaser") then
+                                local remote = Player.Character.Phaser.Shoot
+                                remote:FireServer(targetPlayer.Character.HumanoidRootPart.CFrame)
                             end
                         end
                     end
@@ -131,11 +128,10 @@ do
         end
     end
 
-    -- Connect the toggle to start the aura functionality
-    Phaser:AddToggle("PhaserAura", { Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false })
-    PhaserAura:OnChanged(onPhaserAuraToggle)
 
-    -- Slider for radius
+    Phaser:AddToggle("PhaserAuraa", { Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false })
+    PhaserAuraa:OnChanged(onPhaserAuraToggle)
+
     Phaser:AddSlider("Radius", {
         Title = "Phaser Aura Radius",
         Description = "Sets the trigger radius of Phaser Aura.",
