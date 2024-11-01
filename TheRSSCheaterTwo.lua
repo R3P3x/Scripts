@@ -99,11 +99,13 @@ do
 
     local target = nil
 
+    game:WaitForChild("Players")
+
     Kicker:AddDropdown("Target", {
         Title = "Target Player",
         Description = "Sets the target player for the exploit.",
         Values = game.Players,
-        Default = game.Players.LocalPlayer,
+        Default = nil,
         Callback = function(Value)
             target = Value.Name
         end
