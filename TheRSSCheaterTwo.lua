@@ -69,6 +69,17 @@ do
     end
 end
 
+local function Notify(Message)
+    if Fluent and typeof(Message) == "string" then
+        Fluent:Notify({
+            Title = "The R.S.S. Cheater 2",
+            Content = Message,
+            SubContent = "[Exploit by Future Hub]",
+            Duration = 10
+        })
+    end
+end
+
 warn("Fluent UI Library loaded!")
 
 do
@@ -86,66 +97,30 @@ do
 
     Window:SelectTab(1)
 
-    local PhaserRadius = 30
-    local PhaserAura = false
     local Modded = false
 
     warn("Check 2")
-    local HRPs = {}
-    RunService.Heartbeat:Connect(function()
-        if PhaserAura then
-            HRPs = {}
-            for _, part in pairs(game.Workspace:GetChildren()) do
-                if part:IsA("BasePart") and part.Name == "HumanoidRootPart" then
-                    table.insert(HRPs, part)
-                end
-            end
-        end
-    end)
-    warn("Check 3")
     local Fire = function(Pos)
         game.Players.LocalPlayer.Character.Phaser.Shoot:FireServer(Pos)
         warn("REALLY Fired!!1!!!11!!1!")
     end
 
-    game.RunService.Heartbeat:Connect(function()
-        if PhaserAura and Modded then
-            for _, HRP in ipairs(HRPs) do
-                local distance = (HRP.Position - game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude
-                if distance <= PhaserRadius and HRP ~= game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") then
-                    Fire(HRP.CFrame)
-                    warn("Fired!")
-                end
-            end
-        end
-    end)
+    warn("Check 3")
+    Tabs.PhaserMods:AddDropdown{"Plrs", (
+        Title = "Target Player",
+        Description = "Sets the target player.",
+        Values = game.Players:GetPlayers(),
+        Multi = false,
+        Default = nil
+    )}
     warn("Check 4")
-    Tabs.PhaserMods:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
-	    OnChanged = function(Value)
-		    PhaserAura = Value
-	    end
-    })
-    warn("Check 5")
-    Tabs.PhaserMods:AddSlider("Radius", {
-        Title = "Phaser Aura Radius",
-        Description = "Sets the trigger radius of Phaser Aura.",
-        Default = 30,
-        Min = 5,
-        Max = 3000,
-        Rounding = 1,
-        Callback = function(Value)
-            PhaserRadius = Value
-        end
-    })
 
     Tabs.PhaserMods:AddButton({
         Title = "Mod Phaser",
         Description = "[WIP]",
         Default = false,
         Callback = function(Value)
-        print("-----------------------------------------------------------------------------------------------------|")
-	    print("This will be something very soon, tho rn it is WIP and too unstable for public testing.")
-	    print("-----------------------------------------------------------------------------------------------------|")
+            Notify("Work In Progress.")
         end
     })
 
