@@ -225,12 +225,12 @@ do
         end
     })
 
-    PlayerMods = Window:AddTab({ Title = "Player", Icon = "player" })
+    PlayerMods = Window:AddTab({ Title = "Player", Icon = "user" })
 
     local walkspeeding = false
     local walkspeed = 16
 
-    PlayerMods:AddToggle({
+    PlayerMods:AddToggle("walkspeedtoggle", {
         Title = "Use Walkspeed",
         Description = "Whether or not to use the custom walk speed.",
         OnChanged:Connect(function()
