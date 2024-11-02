@@ -106,13 +106,13 @@ do
     end
 
     warn("Check 3")
-    Tabs.PhaserMods:AddDropdown{"Plrs", (
+    Tabs.PhaserMods:AddDropdown("Plrs", {
         Title = "Target Player",
         Description = "Sets the target player.",
         Values = game.Players:GetPlayers(),
         Multi = false,
         Default = nil
-    )}
+    })
     warn("Check 4")
 
     Tabs.PhaserMods:AddButton({
