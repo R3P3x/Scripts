@@ -1,4 +1,4 @@
-Version = "0.1.0"
+Version = "0.1.1"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -90,36 +90,40 @@ do
     local PhaserAura = false
     local Modded = false
 
-    local HRPs = {}
     warn("Check 2")
+    local HRPs = {}
     RunService.Heartbeat:Connect(function()
-    	HRPs = {}
-    	for _, part in pairs(game.Workspace:GetChildren()) do
-        	if part:IsA("BasePart") and part.Name == "HumanoidRootPart" then
-        	    	table.insert(HRPs, part)
-        	end
-    	end
+        if PhaserAura then
+            HRPs = {}
+            for _, part in pairs(game.Workspace:GetChildren()) do
+                if part:IsA("BasePart") and part.Name == "HumanoidRootPart" then
+                    table.insert(HRPs, part)
+                end
+            end
+        end
     end)
     warn("Check 3")
     local Fire = function(Pos)
-	game.Players.LocalPlayer.Character.Phaser.Shoot:FireServer(Pos)
+        game.Players.LocalPlayer.Character.Phaser.Shoot:FireServer(Pos)
+        warn("REALLY Fired!!1!!!11!!1!")
     end
 
-    game["Run Service"].Heartbeat:Connect(function()
-	while PhaserAura == true do
-		for _, HRP in ipairs(HRPs) do
-			local distance = (HRP.Position - game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude
-			if distance <= PhaserRadius and HRP ~= game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") then
-				Fire(HRP.CFrame)
-			end
-		end
-    	end
+    game.RunService.Heartbeat:Connect(function()
+        if PhaserAura and Modded then
+            for _, HRP in ipairs(HRPs) do
+                local distance = (HRP.Position - game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude
+                if distance <= PhaserRadius and HRP ~= game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") then
+                    Fire(HRP.CFrame)
+                    warn("Fired!")
+                end
+            end
+        end
     end)
     warn("Check 4")
     Tabs.PhaserMods:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
-	OnChanged = function(Value)
-		PhaserAura = Value
-	end
+	    OnChanged = function(Value)
+		    PhaserAura = Value
+	    end
     })
     warn("Check 5")
     Tabs.PhaserMods:AddSlider("Radius", {
@@ -136,10 +140,10 @@ do
 
     Tabs.PhaserMods:AddButton({
         Title = "Mod Phaser",
-        Description = "",
+        Description = "[WIP]",
         Default = false,
         Callback = function(Value)
-            print("-----------------------------------------------------------------------------------------------------|")
+        print("-----------------------------------------------------------------------------------------------------|")
 	    print("This will be something very soon, tho rn it is WIP and too unstable for public testing.")
 	    print("-----------------------------------------------------------------------------------------------------|")
         end
