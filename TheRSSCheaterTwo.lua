@@ -73,7 +73,7 @@ warn("Fluent UI Library loaded!")
 
 do
     local Window = Fluent:CreateWindow({
-        Title = "The R.S.S. Cheater",
+        Title = "The R.S.S. Cheater 2",
         SubTitle = "[PRIVATE RELEASE V" .. Version .. "]",
         TabWidth = UISettings.TabWidth,
         Size = UDim2.fromOffset(table.unpack(UISettings.Size)),
@@ -118,7 +118,7 @@ do
     	end)
     end
 
-    Phaser:AddToggle({
+    Phaser:AddToggle("Phaserer", {
         Title = "Phaser Aura",
         Description = "Toggles Phaser Aura.",
         Default = false,
