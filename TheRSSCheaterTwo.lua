@@ -118,6 +118,8 @@ do
     	end
     end)
 
+    Phaser = Tabs.PhaserMods:AddSection("Phaser")
+	
     Phaser:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
 	OnChanged = function(Value)
 		PhaserAura = Value
