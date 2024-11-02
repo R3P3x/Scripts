@@ -1,4 +1,4 @@
-Version = "0.0.5"
+Version = "0.0.6"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -37,7 +37,7 @@ end
 function InterfaceManager:ExportSettings()
     pcall(function()
         if getfenv().isfile and getfenv().readfile and getfenv().writefile then
-            getfenv().writefile("UISettings.F_LOADER", HttpService:JSONEncode(UISettings))
+            getfenv().writefile("UISettings.F_RSSTWO", HttpService:JSONEncode(UISettings))
         end
     end)
 end
@@ -118,7 +118,7 @@ do
     	end
     end)
 
-    Phaser = Tabs.PhaserMods:AddSection("Phaser")
+    local Phaser = Tabs.PhaserMods:AddSection("Phaser")
 	
     Phaser:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
 	OnChanged = function(Value)
