@@ -1,4 +1,4 @@
-Version = "0.0.7"
+Version = "0.0.9"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
