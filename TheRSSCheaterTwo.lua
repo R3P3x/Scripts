@@ -106,7 +106,7 @@ do
     end
 
     game["Run Service"].Heartbeat:Connect(function()
-	while PhaserAura == true and Modded == true do
+	while PhaserAura == true do
 		for _, HRP in ipairs(HRPs) do
 			local distance = (HRP.Position - game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude
 			if distance <= PhaserRadius and HRP ~= game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") then
