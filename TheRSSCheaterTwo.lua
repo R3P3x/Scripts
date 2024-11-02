@@ -1,4 +1,4 @@
-Version = "0.1.8"
+Version = "0.1.9"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -270,7 +270,7 @@ do
                             {
                                 Title = "Proceed",
                                 Callback = function()
-                                    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:WaitFirstChild("Humanoid")
+                                    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:WaitFirstChild("Humanoid") then
                                         game.Players.LocalPlayer.Character.Humanoid.MaxHealth = math.huge
                                         task.wait()
                                         game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
