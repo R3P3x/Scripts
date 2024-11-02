@@ -81,7 +81,7 @@ do
         Acrylic = UISettings.Acrylic,
         MinimizeKey = UISettings.MinimizeKey
     })
-
+    warn("Check 1")
     local Tabs = { PhaserMods = Window:AddTab({ Title = "Phaser", Icon = "crosshair" }) }
 
     Window:SelectTab(1)
@@ -91,7 +91,7 @@ do
     local Modded = false
 
     local HRPs = {}
-
+    warn("Check 2")
     while true do
 	task.wait(3)
 	for _, part in game.Workspace:GetChildren() do
@@ -102,7 +102,7 @@ do
 		end
 	end
     end
-
+    warn("Check 3")
     local Fire = function(Pos)
 	game.Players.LocalPlayer.Character.Phaser.Shoot:FireServer(Pos)
     end
@@ -117,13 +117,13 @@ do
 		end
     	end
     end)
-	
+    warn("Check 4")
     Tabs.PhaserMods:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
 	OnChanged = function(Value)
 		PhaserAura = Value
 	end
     })
-
+    warn("Check 5")
     Tabs.PhaserMods:AddSlider("Radius", {
         Title = "Phaser Aura Radius",
         Description = "Sets the trigger radius of Phaser Aura.",
