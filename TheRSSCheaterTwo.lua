@@ -117,16 +117,14 @@ do
 		end
     	end
     end)
-
-    local Phaser = Tabs.PhaserMods:AddSection("Phaser")
 	
-    Phaser:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
+    Tabs.PhaserMods:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
 	OnChanged = function(Value)
 		PhaserAura = Value
 	end
     })
 
-    Phaser:AddSlider("Radius", {
+    Tabs.PhaserMods:AddSlider("Radius", {
         Title = "Phaser Aura Radius",
         Description = "Sets the trigger radius of Phaser Aura.",
         Default = 30,
@@ -138,7 +136,7 @@ do
         end
     })
 
-    Phaser:AddButton({
+    Tabs.PhaserMods:AddButton({
         Title = "Mod Phaser",
         Description = "",
         Default = false,
