@@ -184,22 +184,6 @@ do
         end
     })
 
-    Tabs.PhaserMods:AddButton({
-            Title = "Mod Phaser",
-            Description = "Attempts to change your phaser cooldown to 0\n[UNEQUIP PHASER FIRST!!!]",
-            Callback = function()
-                if Modded == false then
-                    game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.e.trig:FireServer()
-                    Notify("Mod successful!")
-                    Modded = true
-                else
-                    Notify("Phaser has already been modded!")
-                end
-            end
-    })
-
-    
-
     Tabs.PhaserMods:AddParagraph({Title = "Important!", Content = "The button below requires more explanation, it will use an exploit to go through every player, if the player is holding their phaser it will make them shoot themselfs 4 times.\n\[THIS IS EXTREMELY BLATANT AND WILL GET YOU BANNED BY STAFF!!!\]"})
 
     Tabs.PhaserMods:AddButton({
@@ -241,6 +225,69 @@ do
         end
     })
 
+    PlayerMods = Window:AddTab({ Title = "Player", Icon = "player" })
+
+    local walkspeeding = false
+    local walkspeed = 16
+
+    PlayerMods:AddToggle({
+        Title = "",
+        Description = "",
+        OnChanged:Connect(function()
+            walkspeeding = value
+        end)
+    })
+    
+    PlayerMods:AddSlider("walkspeed", {
+        Title = "Walkspeed",
+        Description = "Changes your walkspeed",
+        Default = 16,
+        Min = 16,
+        Max = 300,
+        Rounding = 1,
+        Callback = function(Value)
+            walkspeed = Value
+        end
+    })
+
+    game["Run Service"]:Connect(function()
+        if walkspeeding == true then
+            if game.Players.LocalPlayer.Character:WaitForChild("Humanoid") then
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = walkspeed
+            end
+        end
+        task.wait(0.5)
+    end)
+
+    PlayerMods:AddButton({
+            Title = "God Mode",
+            Description = "Sets your health to math.huge",
+            Callback = function()
+                Window:Dialog({
+                        Title = "Warning",
+                        Content = "God Mode is very unstable and requires a rejoin to turn off, do you want to proceed?",
+                        Buttons = {
+                            {
+                                Title = "Proceed",
+                                Callback = function()
+                                    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:WaitFirstChild("Humanoid")
+                                        game.Players.LocalPlayer.Character.Humanoid.MaxHealth = math.huge
+                                        task.wait()
+                                        game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+                                    end
+                                end
+                            },
+                            {
+                                Title = "Cancel",
+                                Callback = function()
+                                    warn("Cancelled God Mode!")
+                                end
+                            }
+                        }
+                    })
+            end
+    })
+    
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
     local UISection = Tabs.Settings:AddSection("UI")
