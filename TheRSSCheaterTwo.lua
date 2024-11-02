@@ -89,108 +89,67 @@ do
 
     Window:SelectTab(1)
 
-    local Phaser = Tabs.PhaserMods:AddSection("Phaser Aura")
-
+    local PhaserRadius = 30
     local PhaserAura = false
-    local setup = false
-    local PhaserRadius = 25
-    local Visualize = false
+    local Modded = false
 
-    local function isPartInRadius(targetPart)
-        local localHRP = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
+    local HRPs = {}
 
-        if targetPart and localHRP then
-            local distance = (targetPart.Position - localHRP.Position).magnitude
-            return distance <= PhaserRadius
-        end
-        return false
+    while true do
+	task.wait(3)
+	for _, part in game.Workspace:GetChildren() do
+		if part:IsA("BasePart") then
+			if part.Name == "HumanoidRootPart" then
+				table.insert(HRPs, part)
+			end
+		end
+	end
     end
 
-    local function onPhaserAuraToggle(value)
-        PhaserAura = value
-        if PhaserAura then
-            while PhaserAura do
-                game["Run Service"].Heartbeat:Wait()
-                for _, target in ipairs(workspace:GetChildren()) do
-                    if target:IsA("Model") and target:FindFirstChild("HRP") then
-                        local targetHRP = target.HRP
-                        if isPartInRadius(targetHRP) then
-                            if Player.Character:FindFirstChild("Phaser") then
-                                local remote = Player.Character.Phaser:FindFirstChild("Shoot")
-                                if remote then
-                                    print("Firing at: " .. target.Name)  -- Debug statement
-                                    remote:FireServer(targetHRP.CFrame)
-                                else
-                                    print("Shoot method not found in Phaser.")  -- Debug statement
-                                end
-                            else
-                                print("Phaser not found in character.")  -- Debug statement
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-	
-    --[[local function isPlayerInRadius(targetPlayer)
-        local targetHRP = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
-        local localHRP = Player.Character and Player.Character:FindFirstChild("HumanoidRootPart")
-
-        if targetHRP and localHRP then
-            local distance = (targetHRP.Position - localHRP.Position).magnitude
-            return distance <= PhaserRadius
-        end
-        return false
+    local Fire = function(Pos)
+	game.Players.LocalPlayer.Character.Phaser.Shoot:FireServer(Pos)
     end
 
-    local function onPhaserAuraToggle(value)
-        PhaserAura = value
-        if PhaserAura then
-            while PhaserAura == true do
-                game["Run Service"].Heartbeat:Wait()
-                for _, targetPlayer in ipairs(Players:GetPlayers()) do
-                    if targetPlayer ~= Player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                        if isPlayerInRadius(targetPlayer) then
-                            if Player.Character:FindFirstChild("Phaser") then
-                                local remote = Player.Character.Phaser.Shoot
-                                remote:FireServer(targetPlayer.Character.HumanoidRootPart.CFrame)
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end]]
-
+    game["Run Service"].Heartbeat:Connect(function()
+	while PhaserAura == true and Modded == true do
+		for _, HRP in HRPs do
+			local distance = (HRP.Position - game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).magnitude
+			if distance <= PhaserRadius and HRP ~= game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart") then
+				Fire(HRP.CFrame)
+			end
+		end
+    	end)
+    end
 
     Phaser:AddToggle("PhaserAuraa", {
         Title = "Phaser Aura",
         Description = "Toggles Phaser Aura.",
         Default = false,
         OnChanged = function(Value)
-            onPhaserAuraToggle(Value)
+            PhaserAura = Value
         end
     })
 
     Phaser:AddSlider("Radius", {
         Title = "Phaser Aura Radius",
         Description = "Sets the trigger radius of Phaser Aura.",
-        Default = 25,
-        Min = 10,
-        Max = 100,
+        Default = 30,
+        Min = 5,
+        Max = 3000,
         Rounding = 1,
         Callback = function(Value)
             PhaserRadius = Value
         end
     })
 
-    Phaser:AddToggle("VisualizeRadius", {
-        Title = "Visualize Radius",
-        Description = "Whether or not the sphere radius is visible.",
+    Phaser:AddButton({
+        Title = "Mod Phaser",
+        Description = "",
         Default = false,
-        OnChanged = function(Value)
-            Visualize = Value
+        Callback = function(Value)
+            print("-----------------------------------------------------------------------------------------------------|")
+	    print("This will be something very soon, tho rn it is WIP and too unstable for public testing.")
+	    print("-----------------------------------------------------------------------------------------------------|")
         end
     })
 
