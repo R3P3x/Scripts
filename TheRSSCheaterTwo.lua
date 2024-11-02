@@ -101,7 +101,7 @@ local exploit = function(target)
                     game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.MouseGrabber.Enabled = true
                     Notify(target.." has been killed.")
                 else
-                    Notify(target.." did not die from the attack, either you are lagging, target is lagging or target has some sort of godmode.")
+                    Notify(target.." did not die from the attack! either you are lagging, the target is lagging or the target has godmode.")
                 end
             else
                 Notify("You need to hold your phaser!")
@@ -177,6 +177,14 @@ do
                 Notify("what the fuck?")
             end
         end
+    })
+
+    Tabs.PhaserMods:AddButton({
+            Title = "Mod Phaser",
+            Description = "Attempts to change your phaser cooldown to 0",
+            Callback = function()
+                game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.e.trig:FireServer()
+            end
     })
 
     warn("Check 3")
