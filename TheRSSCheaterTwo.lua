@@ -1,4 +1,4 @@
-Version = "0.1.5"
+Version = "0.1.6"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -74,7 +74,7 @@ local function Notify(Message)
         Fluent:Notify({
             Title = "The R.S.S. Cheater 2",
             Content = Message,
-            SubContent = "[Exploit by Future Hub]",
+            SubContent = "[Future Hub]",
             Duration = 10
         })
     end
@@ -176,8 +176,10 @@ do
         Title = "Exploit",
         Description = "Attempts to kill the target player.",
         Callback = function()
-            if game.Players:FindFirstChild(tarplr) then
+            if game.Players:FindFirstChild(tarplr) and game.Players:FindFirstChild(tarplr).Character:FindFirstChild("HumanoidRootPart") then
                 exploit(tarplr)
+            else
+                Notify("what the fuck?")
             end
         end
     })
@@ -187,7 +189,7 @@ do
             Description = "Attempts to change your phaser cooldown to 0\n[UNEQUIP PHASER FIRST!!!]",
             Callback = function()
                 if Modded == false then
-                    game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.e.trig:FireServer()
+                    game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.e.trig:FireServer()
                     Notify("Mod successful!")
                     Modded = true
                 else
