@@ -1,4 +1,4 @@
-Version = "0.0.8"
+Version = "0.0.7"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -92,16 +92,14 @@ do
 
     local HRPs = {}
     warn("Check 2")
-    while true do
-	task.wait(3)
-	for _, part in game.Workspace:GetChildren() do
-		if part:IsA("BasePart") then
-			if part.Name == "HumanoidRootPart" then
-				table.insert(HRPs, part)
-			end
-		end
-	end
-    end
+    RunService.Heartbeat:Connect(function()
+    	HRPs = {}
+    	for _, part in pairs(game.Workspace:GetChildren()) do
+        	if part:IsA("BasePart") and part.Name == "HumanoidRootPart" then
+        	    	table.insert(HRPs, part)
+        	end
+    	end
+    end)
     warn("Check 3")
     local Fire = function(Pos)
 	game.Players.LocalPlayer.Character.Phaser.Shoot:FireServer(Pos)
