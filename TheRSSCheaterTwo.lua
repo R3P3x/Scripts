@@ -115,8 +115,8 @@ do
 				Fire(HRP.CFrame)
 			end
 		end
-    	end)
-    end
+    	end
+    end)
 
     Phaser:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
 	OnChanged = function(Value)
