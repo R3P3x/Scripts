@@ -176,10 +176,8 @@ do
         Title = "Exploit",
         Description = "Attempts to kill the target player.",
         Callback = function()
-            if game.Players:FindFirstChild(tarplr) and game.Players:FindFirstChild(tarplr).Character:FindFirstChild("HumanoidRootPart") then
+            if game.Players:FindFirstChild(tarplr) then
                 exploit(tarplr)
-            else
-                Notify("what the fuck?")
             end
         end
     })
