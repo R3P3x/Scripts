@@ -1,4 +1,4 @@
-Version = "0.1.2"
+Version = "0.1.3"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -80,6 +80,40 @@ local function Notify(Message)
     end
 end
 
+local exploit = function(target)
+    if game.Workspace:FindFirstChild(target) then
+        if game.Workspace:FindFirstChild(target):FindFirstChild("HumanoidRootPart") then
+            if game.Players.LocalPlayer.Character:FindFirstChild("Phaser") then
+                game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.MouseGrabber.Enabled = false
+                local tarpos = game.Workspace:FindFirstChild(target).HumanoidRootPart.CFrame
+                game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.Shoot:FireServer(tarpos)
+                task.wait(0.8)
+                local tarpos = game.Workspace:FindFirstChild(target).HumanoidRootPart.CFrame
+                game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.Shoot:FireServer(tarpos)
+                task.wait(0.8)
+                local tarpos = game.Workspace:FindFirstChild(target).HumanoidRootPart.CFrame
+                game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.Shoot:FireServer(tarpos)
+                task.wait(0.8)
+                local tarpos = game.Workspace:FindFirstChild(target).HumanoidRootPart.CFrame
+                game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.Shoot:FireServer(tarpos)
+                task.wait(0.5)
+                if game.Workspace:FindFirstChild(target).Humanoid.Health <= 0 then
+                    game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.MouseGrabber.Enabled = true
+                    Notify(target.." has been killed.")
+                else
+                    Notify(target.." did not die from the attack, either you are lagging, target is lagging or target has some sort of godmode.")
+                end
+            else
+                Notify("You need to hold your phaser!")
+            end
+        else
+            Notify("Target is not rendered, increase graphics settings or move closer.")
+        end
+    else
+        Notify("Incorrect or incomplete target username, make sure its the full username.")
+    end
+end
+
 warn("Fluent UI Library loaded!")
 
 do
@@ -100,27 +134,91 @@ do
     local Modded = false
 
     warn("Check 2")
-    local Fire = function(Pos)
-        game.Players.LocalPlayer.Character.Phaser.Shoot:FireServer(Pos)
-        warn("REALLY Fired!!1!!!11!!1!")
-    end
 
-    warn("Check 3")
-    Tabs.PhaserMods:AddDropdown("Plrs", {
+    local tarplrs = {}
+
+    local tarplr = nil
+
+    -- Populate and update tarplrs table with player names
+    game:GetService("RunService").Heartbeat:Connect(function()
+        table.clear(tarplrs)
+        for _, plr in Players:GetPlayers() do
+            if not table.find(tarplrs, plr.Name) then
+                table.insert(tarplrs, plr.Name)
+            end
+        end
+    end)
+
+    -- Create the dropdown for selecting players
+    local playerDropdown = Tabs.PhaserMods:AddDropdown("Plrs", {
         Title = "Target Player",
         Description = "Sets the target player.",
-        Values = game.Players:GetPlayers(),
+        Values = tarplrs,
         Multi = false,
-        Default = nil
+        Default = nil,
+        Callback = function(Value)
+            tarplr = Value
+            print("Selected target player: ", tarplr)
+        end
     })
-    warn("Check 4")
+
+    -- Update dropdown values with updated tarplrs table each heartbeat
+    game:GetService("RunService").Heartbeat:Connect(function()
+        playerDropdown:SetValues(tarplrs)
+    end)
 
     Tabs.PhaserMods:AddButton({
-        Title = "Mod Phaser",
-        Description = "[WIP]",
+        Title = "Exploit",
+        Description = "Attempts to kill the target player.",
+        Callback = function()
+            if game.Players:FindFirstChild(tarplr) and game.Players:FindFirstChild(tarplr).Character:FindFirstChild("HumanoidRootPart") then
+                exploit(tarplr)
+            else
+                Notify("what the fuck?")
+            end
+        end
+    })
+
+    warn("Check 3")
+
+    Tabs.PhaserMods:AddParagraph({Title = "Important!", Content = "The button below requires more explanation, it will use an exploit to go through every player, if the player is holding their phaser it will make them shoot themselfs, it will make them shoot themselfs 4 times to ensure they die.\n\[THIS IS EXTREMELY BLATANT AND WILL GET YOU BANNED BY STAFF!!!\]"})
+
+    Tabs.PhaserMods:AddButton({
+        Title = "The Great Self OOFening",
+        Description = "World Ending :O",
         Default = false,
         Callback = function(Value)
-            Notify("Work In Progress.")
+            Window:Dialog({
+                        Title = "Warning!",
+                        Content = "This is very blatant and very unstable, do you want to proceed?",
+                        Buttons = {
+                            {
+                                Title = "Yes",
+                                Callback = function()
+                                    for _, plr in game.Players:GetPlayers() do
+                                        if plr.Character and plr.Character:FindFirstChild("Phaser") and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Name ~= game.Players.LocalPlayer.Name then
+                                            Notify("The Great Self OOFening has commenced!!!")
+                                            plr.Character.Phaser.Shoot:FireServer(plr.Character.HumanoidRootPart.CFrame)
+                                            task.wait(0.8)
+                                            plr.Character.Phaser.Shoot:FireServer(plr.Character.HumanoidRootPart.CFrame)
+                                            task.wait(0.8)
+                                            plr.Character.Phaser.Shoot:FireServer(plr.Character.HumanoidRootPart.CFrame)
+                                            task.wait(0.8)
+                                            plr.Character.Phaser.Shoot:FireServer(plr.Character.HumanoidRootPart.CFrame)
+                                            task.wait(0.5)
+                                            Notify("The Great Self OOFening has ended.")
+                                        end
+                                    end
+                                end
+                            },
+                            {
+                                Title = "No.",
+                                Callback = function()
+                                    warn("The Great Self OOFening has been cancelled! phew...")
+                                end
+                            }
+                        }
+                    })
         end
     })
 
