@@ -133,13 +133,16 @@ do
 
     local Modded = false
 
+    game.Players.LocalPlayer:WaitForChild("Humanoid").Died:Connect(function()
+        Modded = false
+    end)
+
     warn("Check 2")
 
     local tarplrs = {}
 
     local tarplr = nil
 
-    -- Populate and update tarplrs table with player names
     game:GetService("RunService").Heartbeat:Connect(function()
         table.clear(tarplrs)
         for _, plr in Players:GetPlayers() do
@@ -149,7 +152,6 @@ do
         end
     end)
 
-    -- Create the dropdown for selecting players
     local playerDropdown = Tabs.PhaserMods:AddDropdown("Plrs", {
         Title = "Target Player",
         Description = "Sets the target player.",
@@ -162,9 +164,9 @@ do
         end
     })
 
-    -- Update dropdown values with updated tarplrs table each heartbeat
     game:GetService("RunService").Heartbeat:Connect(function()
         playerDropdown:SetValues(tarplrs)
+        task.wait(0.8)
     end)
 
     Tabs.PhaserMods:AddButton({
@@ -181,15 +183,21 @@ do
 
     Tabs.PhaserMods:AddButton({
             Title = "Mod Phaser",
-            Description = "Attempts to change your phaser cooldown to 0",
+            Description = "Attempts to change your phaser cooldown to 0\n[UNEQUIP PHASER FIRST!!!]",
             Callback = function()
-                game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.e.trig:FireServer()
+                if Modded == false then
+                    game.ReplicatedStorage.ReplicateHats.Bunny.BunnyTail.Handle.Mesh.e.trig:FireServer()
+                    Notify("Mod successful!")
+                    Modded = true
+                else
+                    Notify("Phaser has already been modded!")
+                end
             end
     })
 
-    warn("Check 3")
+    
 
-    Tabs.PhaserMods:AddParagraph({Title = "Important!", Content = "The button below requires more explanation, it will use an exploit to go through every player, if the player is holding their phaser it will make them shoot themselfs, it will make them shoot themselfs 4 times to ensure they die.\n\[THIS IS EXTREMELY BLATANT AND WILL GET YOU BANNED BY STAFF!!!\]"})
+    Tabs.PhaserMods:AddParagraph({Title = "Important!", Content = "The button below requires more explanation, it will use an exploit to go through every player, if the player is holding their phaser it will make them shoot themselfs 4 times.\n\[THIS IS EXTREMELY BLATANT AND WILL GET YOU BANNED BY STAFF!!!\]"})
 
     Tabs.PhaserMods:AddButton({
         Title = "The Great Self OOFening",
