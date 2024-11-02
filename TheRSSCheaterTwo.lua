@@ -118,13 +118,10 @@ do
     	end)
     end
 
-    Phaser:AddToggle("Phaserer", {
-        Title = "Phaser Aura",
-        Description = "Toggles Phaser Aura.",
-        Default = false,
-        OnChanged = function(Value)
-            PhaserAura = Value
-        end
+    Phaser:AddToggle("Phaserer", {Title = "Phaser Aura", Description = "Toggles Phaser Aura.", Default = false,
+	OnChanged = function(Value)
+		PhaserAura = Value
+	end
     })
 
     Phaser:AddSlider("Radius", {
