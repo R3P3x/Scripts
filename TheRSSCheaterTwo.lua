@@ -1,4 +1,4 @@
-Version = "0.1.6"
+Version = "0.1.7"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -176,7 +176,7 @@ do
         Title = "Exploit",
         Description = "Attempts to kill the target player.",
         Callback = function()
-            if game.Players:FindFirstChild(tarplr) and game.Players:FindFirstChild(tarplr).Character:FindFirstChild("HumanoidRootPart") then
+            if game.Players:FindFirstChild(tarplr) then
                 exploit(tarplr)
             else
                 Notify("what the fuck?")
@@ -231,8 +231,8 @@ do
     local walkspeed = 16
 
     PlayerMods:AddToggle({
-        Title = "",
-        Description = "",
+        Title = "Use Walkspeed",
+        Description = "Whether or not to use the custom walk speed.",
         OnChanged:Connect(function()
             walkspeeding = value
         end)
@@ -287,6 +287,22 @@ do
                     })
             end
     })
+
+    local infJump = false
+
+    PlayerMods:AddToggle({
+            Title = "Infinite Jump",
+            Description = "Lets you jump in the air.",
+            OnChanged:Connect(function(Value)
+                infJump = Value
+            end)
+    })
+
+    UserInputService.JumpRequest:Connect(function()
+        if infJump then
+            humanoid.Jump = true
+        end
+    end)
     
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
