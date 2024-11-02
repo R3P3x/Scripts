@@ -133,7 +133,7 @@ do
 
     local Modded = false
 
-    game.Players.LocalPlayer:WaitForChild("Humanoid").Died:Connect(function()
+    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
         Modded = false
     end)
 
