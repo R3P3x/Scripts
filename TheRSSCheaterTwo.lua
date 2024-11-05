@@ -1,4 +1,4 @@
-Version = "0.1.9"
+Version = "0.2.0"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -101,7 +101,7 @@ local exploit = function(target)
                     game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).Phaser.MouseGrabber.Enabled = true
                     Notify(target.." has been killed.")
                 else
-                    Notify(target.." did not die from the attack! either you are lagging, the target is lagging or the target has godmode.")
+                    Notify(target.." did not die from the attack!")
                 end
             else
                 Notify("You need to hold your phaser!")
@@ -250,7 +250,7 @@ do
         end
     })
 
-    game["Run Service"]:Connect(function()
+    game["Run Service"].Heartbeat:Connect(function()
         if walkspeeding == true then
             if game.Players.LocalPlayer.Character:WaitForChild("Humanoid") then
                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = walkspeed
