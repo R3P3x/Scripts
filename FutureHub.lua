@@ -78,6 +78,17 @@ do
     end
 end
 
+local function Notify(Message, SubMessage)
+    if Fluent and typeof(Message) == "string" and typeof(SubMessage) == "string" then
+        Fluent:Notify({
+            Title = "Future Hub",
+            Content = Message,
+            SubContent = SubMessage,
+            Duration = 5
+        })
+    end
+end
+
 warn("Fluent UI Library loaded!")
 
 do
@@ -102,6 +113,7 @@ do
         Description = "THE script.",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+            Notify("Loading Infinite Yield!", "Made by Toon (aka toonarch, EdgeIY)")
         end
     })
 
@@ -110,6 +122,7 @@ do
         Description = "Aimbot, esp, triggerbot, all you need for competetive games!.",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua"))()
+            Notify("Loading Future Internals!", "Made By Future Hub (aka S_B)")
         end
     })
 
@@ -118,6 +131,7 @@ do
         Description = "Spoofs chat messages.",
         Callback = function()
             loadstring(game:HttpGet('https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/ChatSpoof.lua'))()
+            Notify("Loading Chat Spoofer!", "Made by unknown, modded by S_B")
         end
     })
 
@@ -126,6 +140,7 @@ do
         Description = "Might be buggy if map is place in a weird location!.",
         Callback = function()
             loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()
+            Notify("Loading Invisiblity Button!", "Made by unknown")
         end
     })
 
@@ -136,6 +151,7 @@ do
         Description = "Game: Prison Life.",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))()
+            Notify("Loading PrisonWare V1.3!", "Made by Zyrex (aka Denverrz)")
         end
     })
 
@@ -144,6 +160,7 @@ do
         Description = "Game: The R.S.S. Bloxy 2",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/TheRSSCheaterTwo.lua"))()
+            Notify("Loading The R.S.S. Cheater 2!", "Made by Future Hub")
         end
     })
 
