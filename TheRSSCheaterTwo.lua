@@ -290,7 +290,7 @@ do
 
     local infJump = false
 
-    PlayerMods:AddToggle({
+    PlayerMods:AddToggle("InfJump", {
             Title = "Infinite Jump",
             Description = "Lets you jump in the air.",
             Callback = function(Value)
