@@ -225,7 +225,7 @@ do
         end
     })
 
-    PlayerMods = Window:AddTab({ Title = "Player", Icon = "user" })
+    --[[PlayerMods = Window:AddTab({ Title = "Player", Icon = "user" })
 
     local walkspeeding = false
     local walkspeed = 16
@@ -302,7 +302,7 @@ do
         if infJump then
             humanoid.Jump = true
         end
-    end)
+    end)]]
     
     Tabs.Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
