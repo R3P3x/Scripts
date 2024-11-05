@@ -1,4 +1,4 @@
-Version = "0.2.0"
+Version = "0.2.1"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -146,7 +146,7 @@ do
 
     local tarplr = nil
 
-    game:GetService("RunService").Heartbeat:Connect(function()
+    RunService.Heartbeat:Connect(function()
         table.clear(tarplrs)
         for _, plr in Players:GetPlayers() do
             if not table.find(tarplrs, plr.Name) then
@@ -167,7 +167,7 @@ do
         end
     })
 
-    game:GetService("RunService").Heartbeat:Connect(function()
+    RunService.Heartbeat:Connect(function()
         playerDropdown:SetValues(tarplrs)
         task.wait(0.8)
     end)
@@ -250,7 +250,7 @@ do
         end
     })
 
-    game["Run Service"].Heartbeat:Connect(function()
+    RunService.Heartbeat:Connect(function()
         if walkspeeding == true then
             if game.Players.LocalPlayer.Character:WaitForChild("Humanoid") then
                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = walkspeed
