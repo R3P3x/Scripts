@@ -1,5 +1,5 @@
 
-Version = "0.0.2"
+Version = "0.0.3"
 
 warn("----------------------------------------------------|")
 warn("Loading Future Hub V" .. Version .. "!")
@@ -110,6 +110,14 @@ do
         Description = "Aimbot, esp, triggerbot, all you need for competetive games!.",
         Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/FutureInternals.lua"))()
+        end
+    })
+
+    Universal:AddButton({
+        Title = "Chat Spoofer",
+        Description = "Spoofs chat messages.",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/ChatSpoof.lua'))()
         end
     })
 
