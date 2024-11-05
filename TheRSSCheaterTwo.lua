@@ -1,4 +1,4 @@
-Version = "0.2.2"
+Version = "0.2.3"
 
 warn("----------------------------------------------------|")
 warn("Loading The R.S.S. Cheater 2 V" .. Version .. "!")
@@ -233,9 +233,9 @@ do
     PlayerMods:AddToggle("walkspeedtoggle", {
         Title = "Use Walkspeed",
         Description = "Whether or not to use the custom walk speed.",
-        OnChanged:Connect(function()
+        Callback = function()
             walkspeeding = value
-        end)
+        end
     })
     
     PlayerMods:AddSlider("walkspeed", {
@@ -293,9 +293,9 @@ do
     PlayerMods:AddToggle({
             Title = "Infinite Jump",
             Description = "Lets you jump in the air.",
-            OnChanged:Connect(function(Value)
+            Callback = function(Value)
                 infJump = Value
-            end)
+            end
     })
 
     UserInputService.JumpRequest:Connect(function()
