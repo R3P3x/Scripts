@@ -1,3 +1,31 @@
+local Fluent = nil
+
+do
+    if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:FindFirstChild("Fluent"):IsA("ModuleScript") then
+        Fluent = require(script:FindFirstChild("Fluent"))
+    else
+        local Success, Result = pcall(function()
+            return game:HttpGet("https://raw.githubusercontent.com/R3P3x/Scripts/refs/heads/main/Fluent.txt", true)
+        end)
+        if Success and typeof(Result) == "string" then
+            Fluent = loadstring(Result)()
+        else
+            return
+        end
+    end
+end
+
+local function Notify(Message, SubMessage)
+    if Fluent and typeof(Message) == "string" and typeof(SubMessage) == "string" then
+        Fluent:Notify({
+            Title = "Chat Spoofer",
+            Content = Message,
+            SubContent = SubMessage,
+            Duration = 5
+        })
+    end
+end
+
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 local SubmitButton
 
@@ -94,6 +122,7 @@ SubmitButton =
                         "                                                                                                                                                             [" ..
                         tostring(SpoofName:GetText()) .. "]: " .. tostring(SpoofMessage:GetText())
                     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message, "All")
+                    Notify("Spoofed Message Send!", " ")
                 end
             end
         }
