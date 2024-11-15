@@ -1,3 +1,4 @@
+--[[
 Official Future Hub script repo
 
 
@@ -38,3 +39,4 @@ Discontinued Projects = {
     Build A Boat For Treasure auto grinder.
   };
 }
+]]
