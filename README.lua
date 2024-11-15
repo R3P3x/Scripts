@@ -9,6 +9,10 @@ Active Projects = {
     Script hub for all Future Hub (and related) scripts.
   },
 
+  Future Scanner = {
+    Datamodel scanner, scans and logs remoteevents, remotefunctions, modulescripts and much more! also able to automatically fireserver, invokeserver, and return contents of module scripts!.
+  },
+
   I Wanna Be The Cheater = {
     Exploit (with ui) for I Wanna Be The Developer by VistaStudios.
   };
