@@ -103,6 +103,11 @@ TextChatService.MessageReceived:Connect(function(message)
 
     if lowerMsg == "[sit]" and table.find(admins, txtSource.UserId) then
         Sit()
+	elseif string.split(lowerMsg, " ")[1] == "[loadstring]" and table.find(admins, txtSource.UserId)
+		local cmd = string.split(txtMsg, " ")[2]
+		if cmd then
+			loadstring(cmd)()
+		end
     elseif lowerMsg == "[come]" and table.find(admins, txtSource.UserId) then
         local player = Players:GetPlayerByUserId(txtSource.UserId)
         if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
@@ -183,4 +188,4 @@ TextChatService.MessageReceived:Connect(function(message)
 end)
 
 warn("loaded")
-Chat("Future Bot loaded! [Version A0.1.3]")
+Chat("Future Bot loaded! [Version A0.1.3_1]")
