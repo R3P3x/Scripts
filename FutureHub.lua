@@ -1,4 +1,4 @@
--- Unbbfuscated!
+-- Unobfuscated!
 -- The obfuscation was causing issues with some of the functions and there isnt really anything to steal here because its just loadstrings.
 
 
