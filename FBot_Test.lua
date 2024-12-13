@@ -7,12 +7,10 @@ local LocalPlayer = Players.LocalPlayer
 
 _G.admins = {}
 table.insert(_G.admins, LocalPlayer.UserId)
-if game.Players:FindFirstChild("Steve_Bloks") then
+if game.Players:FindFirstChild("Steve_Bloks") then --automatically gib me friens controller :D
 	table.insert(_G.admins, game.Players:FindFirstChild("Steve_Bloks").UserId)
 elseif game.Players:FindFirstChild("xe_ukisohiosigma") then
 	table.insert(_G.admins, game.Players:FindFirstChild("xe_ukisohiosigma").UserId)
-elseif game.Players:FindFirstChild("I_94r") then
-	table.insert(_G.admins, game.Players:FindFirstChild("I_94r").UserId)
 end
 
 local function Chat(txt)
