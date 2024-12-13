@@ -208,10 +208,10 @@ TextChatService.MessageReceived:Connect(function(message)
 end)
 
 local testingRandomMode = false
-local secureNameSet = "ZaylonBuilds"
+local secureNameSet = ""
 
 warn("loaded")
-Chat("Future Bot loading! [Version A0.1.3_]")
+Chat("Future Bot loading! [Version A0.1.3_public]")
 if testingRandomMode == true then
 	task.wait(5)
 	Chat("[FBot]: This is an automatic test, making a random user a controller.")
@@ -222,6 +222,6 @@ if testingRandomMode == true then
 	if random.Name == "FutureHub_Official" then
 		Chat("[admin] "..secureNameSet)
 	else
-		Chat("[admin] ".."ZaylonBuilds")
+		Chat("[admin] "..random.Name)
 	end
 end
